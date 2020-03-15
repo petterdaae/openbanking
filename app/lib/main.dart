@@ -1,5 +1,6 @@
 import 'package:app/auth.dart';
 import 'package:app/dependencies.dart';
+import 'package:app/views/all_accounts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +45,7 @@ class App extends StatelessWidget {
                   'Not authenticated',
                 ),
               )
-            : Text('Authenticated as ' + auth.uid),
+            : AllAccountsWidget(),
       ),
     );
   }
