@@ -1,5 +1,6 @@
 import 'package:app/auth.dart';
 import 'package:app/dependencies.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,7 @@ class Main extends StatelessWidget {
         Provider<Dependencies>(
           create: (_) => Dependencies(
             auth: FirebaseAuth.instance,
+            firestore: Firestore.instance,
             email: 'petter.daae@gmail.com',
             password: 'Zl88d^Zy54ph96FE1Zy!n',
           ),

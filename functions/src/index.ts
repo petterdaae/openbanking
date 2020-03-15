@@ -6,7 +6,7 @@ import createAccountsClient from './accounts';
 
 admin.initializeApp();
 const db = admin.firestore();
-const uid = 'NQk5EYi3yZzAPMHFFqfd';
+const uid = 'EKDRNcDbDgUYbdGyFFUevSLBrW33';
 
 const deps: Dependencies = {
     firestore: db,
