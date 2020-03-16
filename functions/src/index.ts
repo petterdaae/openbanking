@@ -14,30 +14,20 @@ const deps: Dependencies = {
     uid: uid
 }
 
-export const updateAccounts = functions.https.onRequest(async (request, response) => {
-    try {
-        const snapshot = await db.collection('users').doc(uid).get();
-        const id = snapshot.get('sbanken_clientid');
-        const secret = snapshot.get('sbanken_clientsecret');
-        const nationalId = snapshot.get('nationalid');
+async function updateAccounts() {
+    const snapshot = await db.collection('users').doc(uid).get();
+    const id = snapshot.get('sbanken_clientid');
+    const secret = snapshot.get('sbanken_clientsecret');
+    const nationalId = snapshot.get('nationalid');
 
-        let sbankenClient = new SbankenClient(id, secret, nationalId);
-        let accounts = await sbankenClient.getAccounts();
+    let sbankenClient = new SbankenClient(id, secret, nationalId);
+    let accounts = await sbankenClient.getAccounts();
 
-        let accountsClient = createAccountsClient(deps);
-        await accountsClient.updateAccounts(accounts);
+    let accountsClient = createAccountsClient(deps);
+    await accountsClient.updateAccounts(accounts);
+}
 
-        response.send({
-            message: "Successfully updated accounts"
-        });
-    } catch (_) {
-        response.status(500).send({
-            message: "Failed to update accounts"
-        });
-    }
-});
-
-export const updateTransactions = functions.https.onRequest(async (request, response) => {
+async function updateTransactions() {
     const snapshot = await db.collection('users').doc(uid).get();
     const id = snapshot.get('sbanken_clientid');
     const secret = snapshot.get('sbanken_clientsecret');
@@ -51,8 +41,18 @@ export const updateTransactions = functions.https.onRequest(async (request, resp
         transactionsClient.updateTransactions(transactions);
 
     }
+}
 
+export const update = functions.https.onRequest(async (request, response) => {
+    try {
+        await updateAccounts();
+        await updateTransactions();
+    } catch(e) {
+        response.status(500).send({
+            message: "Internal server error"
+        });
+    }
     response.send({
-        message: "Successfully updated transactions"
+        message: "Successfully updated accounts and transactions"
     });
 });
