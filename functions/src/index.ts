@@ -3,6 +3,7 @@ import * as admin from 'firebase-admin';
 import SbankenClient from './sbanken';
 import Dependencies from './dependencies';
 import createAccountsClient from './accounts';
+import createTransactionsClient from './transactions';
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -34,4 +35,24 @@ export const updateAccounts = functions.https.onRequest(async (request, response
             message: "Failed to update accounts"
         });
     }
+});
+
+export const updateTransactions = functions.https.onRequest(async (request, response) => {
+    const snapshot = await db.collection('users').doc(uid).get();
+    const id = snapshot.get('sbanken_clientid');
+    const secret = snapshot.get('sbanken_clientsecret');
+    const nationalId = snapshot.get('nationalid');
+    const sbankenClient = new SbankenClient(id, secret, nationalId);
+    const transactionsClient = createTransactionsClient(deps);
+
+    const accounts = await sbankenClient.getAccounts();
+    for (const account of accounts) {
+        const transactions = await sbankenClient.getTransactions(account.accountId);
+        transactionsClient.updateTransactions(transactions);
+
+    }
+
+    response.send({
+        message: "Successfully updated transactions"
+    });
 });

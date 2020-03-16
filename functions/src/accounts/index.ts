@@ -4,7 +4,7 @@ import { Account } from '../types';
 
 type Firestore = admin.firestore.Firestore;
 
-class Accounts {
+export class Accounts {
     firestore: Firestore;
     userId: string;
 
@@ -35,8 +35,18 @@ class Accounts {
             .where('bank', '==', account.bank)
             .get();
         return !snapshot.empty;
-
     }
+
+    async getDocumentIdFromAccountId(idFromBank: string) {
+        const snapshot = await this.firestore
+            .collection('users')
+            .doc(this.userId)
+            .collection('accounts')
+            .where('accountId', '==', idFromBank)
+            .get();
+        const doc = snapshot.docs[0];
+        return doc.id;
+    } 
 
     async updateAccount(account: Account): Promise<void> {
         const exists = await this.accountExists(account);

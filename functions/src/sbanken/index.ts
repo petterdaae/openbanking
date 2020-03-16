@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import btoa from 'btoa';
-import { Account } from '../types';
+import { Account, Transaction } from '../types';
 
 export default class SbankenClient {
     clientId: string;
@@ -59,5 +59,34 @@ export default class SbankenClient {
         }
 
         return accounts;
+    }
+
+    async getTransactions(sbankenAccountId: string) {
+        const accessToken = await this.getAccessToken();
+        let response = await fetch(`https://api.sbanken.no/exec.bank/api/v1/transactions/${sbankenAccountId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': "Bearer " + accessToken,
+                'Accept': 'application/json',
+                'customerId': this.nationalId
+            }
+        });
+
+        const json = await response.json();
+
+        let transactions: Transaction[] = [];
+        for (const item of json.items) {
+            const transaction: Transaction = {
+                accountingDate: item.accountingDate,
+                interestDate: item.interestDate,
+                amount: item.amount,
+                text: item.text,
+                accountId: 'UKNOWN',
+                accountIdFromBank: sbankenAccountId
+            };
+            transactions.push(transaction);
+        }
+
+        return transactions;
     }
 }
