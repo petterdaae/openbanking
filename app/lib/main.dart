@@ -1,6 +1,7 @@
 import 'package:app/auth.dart';
 import 'package:app/dependencies.dart';
 import 'package:app/views/all_accounts.dart';
+import 'package:app/views/all_transactions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -60,9 +61,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     AllAccountsWidget(),
-    Placeholder(
-      color: Colors.red,
-    ),
+    AllTransactionsWidget(),
   ];
   final List<Widget> _title = [
     Text('Accounts'),

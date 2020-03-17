@@ -1,12 +1,12 @@
 import 'package:app/auth.dart';
-import 'package:app/components/account_list.dart';
+import 'package:app/components/transaction_list.dart';
 import 'package:app/dependencies.dart';
-import 'package:app/models/account.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import '../models/transaction.dart' as T;
 
-class AllAccountsWidget extends StatelessWidget {
+class AllTransactionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Firestore firestore = Provider.of<Dependencies>(context).firestore;
@@ -15,18 +15,20 @@ class AllAccountsWidget extends StatelessWidget {
       stream: firestore
           .collection('users')
           .document(uid)
-          .collection('accounts')
+          .collection('transactions')
+          .orderBy('accountingDate', descending: true)
+          .limit(30)
           .snapshots(),
       builder: (
         BuildContext context,
         AsyncSnapshot<QuerySnapshot> snapshot,
       ) {
         if (!snapshot.hasData) return Text("Loading");
-        List<Account> accounts = snapshot.data.documents
-            .map((account) => Account.parse(account))
+        List<T.Transaction> transactions = snapshot.data.documents
+            .map((transaction) => T.Transaction.parse(transaction))
             .toList();
-        return AccountListWidget(
-          accounts: accounts,
+        return TransactionListWidget(
+          transactions: transactions,
         );
       },
     );
