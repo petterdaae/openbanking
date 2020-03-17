@@ -42,11 +42,60 @@ class App extends StatelessWidget {
                   auth.login(context);
                 },
                 child: Text(
-                  'Not authenticated',
+                  'Login',
                 ),
               )
-            : AllAccountsWidget(),
+            : Home(),
       ),
     );
+  }
+}
+
+class Home extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    AllAccountsWidget(),
+    Placeholder(
+      color: Colors.red,
+    ),
+  ];
+  final List<Widget> _title = [
+    Text('Accounts'),
+    Text('Transactions'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: _title[_currentIndex],
+      ),
+      body: _children[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: onTabTapped,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.email),
+            title: Text('Accounts'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.enhanced_encryption),
+            title: Text('Transactions'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 }
