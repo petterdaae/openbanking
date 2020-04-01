@@ -2,8 +2,8 @@ import 'package:app/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class TransactionWidget extends StatelessWidget {
-  const TransactionWidget({this.transaction});
+class TransactionListItemComponent extends StatelessWidget {
+  const TransactionListItemComponent({this.transaction});
   final Transaction transaction;
 
   @override

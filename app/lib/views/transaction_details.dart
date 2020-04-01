@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 
 import '../models/transaction.dart' as T;
 
-class TransactionDetailsView extends StatelessWidget {
-  const TransactionDetailsView({this.transactionId});
+class TransactionDetails extends StatelessWidget {
+  const TransactionDetails({this.transactionId});
 
   final String transactionId;
 

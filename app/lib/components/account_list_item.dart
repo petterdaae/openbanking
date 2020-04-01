@@ -1,8 +1,8 @@
 import 'package:app/models/account.dart';
 import 'package:flutter/material.dart';
 
-class AccountWidget extends StatelessWidget {
-  const AccountWidget({this.account});
+class AccountListItemComponent extends StatelessWidget {
+  const AccountListItemComponent({this.account});
 
   final Account account;
 

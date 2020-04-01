@@ -1,9 +1,10 @@
-import 'package:app/components/account.dart';
 import 'package:app/models/account.dart';
 import 'package:flutter/material.dart';
 
-class AccountListWidget extends StatelessWidget {
-  const AccountListWidget({this.accounts});
+import 'account_list_item.dart';
+
+class AccountListComponent extends StatelessWidget {
+  const AccountListComponent({this.accounts});
 
   final List<Account> accounts;
 
@@ -12,7 +13,7 @@ class AccountListWidget extends StatelessWidget {
     return ListView(
       children: accounts
           .map(
-            (account) => AccountWidget(account: account),
+            (account) => AccountListItemComponent(account: account),
           )
           .toList(),
     );

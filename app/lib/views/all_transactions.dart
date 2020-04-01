@@ -4,9 +4,10 @@ import 'package:app/dependencies.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+
 import '../models/transaction.dart' as T;
 
-class AllTransactionsWidget extends StatelessWidget {
+class AllTransactions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Firestore firestore = Provider.of<Dependencies>(context).firestore;
@@ -27,7 +28,7 @@ class AllTransactionsWidget extends StatelessWidget {
         List<T.Transaction> transactions = snapshot.data.documents
             .map((transaction) => T.Transaction.parse(transaction))
             .toList();
-        return TransactionListWidget(
+        return TransactionListComponent(
           transactions: transactions,
         );
       },

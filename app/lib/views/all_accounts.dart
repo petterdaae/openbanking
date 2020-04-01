@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-class AllAccountsWidget extends StatelessWidget {
+class AllAccounts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Firestore firestore = Provider.of<Dependencies>(context).firestore;
@@ -25,7 +25,7 @@ class AllAccountsWidget extends StatelessWidget {
         List<Account> accounts = snapshot.data.documents
             .map((account) => Account.parse(account))
             .toList();
-        return AccountListWidget(
+        return AccountListComponent(
           accounts: accounts,
         );
       },

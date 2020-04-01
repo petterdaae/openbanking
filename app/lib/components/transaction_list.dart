@@ -1,11 +1,11 @@
-import 'package:app/components/transaction.dart';
+import 'package:app/components/transaction_list_item.dart';
 import 'package:app/models/transaction.dart';
 import 'package:app/views/transaction_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class TransactionListWidget extends StatelessWidget {
-  const TransactionListWidget({this.transactions});
+class TransactionListComponent extends StatelessWidget {
+  const TransactionListComponent({this.transactions});
 
   final List<Transaction> transactions;
 
@@ -20,13 +20,13 @@ class TransactionListWidget extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (BuildContext context) => TransactionDetailsView(
+              builder: (BuildContext context) => TransactionDetails(
                 transactionId: transactions[index].id,
               ),
             ),
           );
         },
-        child: TransactionWidget(
+        child: TransactionListItemComponent(
           transaction: transactions[index],
         ),
       ),
