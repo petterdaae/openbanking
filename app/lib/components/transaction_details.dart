@@ -1,5 +1,6 @@
 import 'package:app/components/transaction_list_item.dart';
 import 'package:app/models/transaction.dart';
+import 'package:app/views/category_list.dart';
 import 'package:flutter/material.dart';
 
 class TransactionDetailsComponent extends StatelessWidget {
@@ -17,7 +18,16 @@ class TransactionDetailsComponent extends StatelessWidget {
             transaction: transaction,
           ),
           FlatButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Scaffold(
+                    appBar: AppBar(),
+                    body: CategoryList(),
+                  ),
+                ),
+              );
+            },
             color: Colors.green,
             child: Text("Change category"),
           )
