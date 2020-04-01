@@ -8,6 +8,7 @@ class Transaction {
     this.interestDate,
     this.amount,
     this.text,
+    this.id,
   });
 
   final String accountDocumentId;
@@ -16,6 +17,7 @@ class Transaction {
   final DateTime interestDate;
   final double amount;
   final String text;
+  final String id;
 
   static Transaction parse(DocumentSnapshot snapshot) => Transaction(
         accountDocumentId: snapshot['accountId'],
@@ -24,5 +26,6 @@ class Transaction {
         amount: double.parse(snapshot['amount'].toString()),
         interestDate: DateTime.parse(snapshot['interestDate']),
         text: snapshot['text'],
+        id: snapshot.documentID,
       );
 }
