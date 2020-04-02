@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d1fff78-4b7b-426b-a1ff-4e1a3368a7f0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../firestore.rules" beforeDir="false" afterPath="$PROJECT_DIR$/../firestore.rules" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-    </list>
+    <list default="true" id="4d1fff78-4b7b-426b-a1ff-4e1a3368a7f0" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,7 +36,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585830172227</updated>
-      <workItem from="1585830173979" duration="3746000" />
+      <workItem from="1585830173979" duration="4212000" />
     </task>
     <servers />
   </component>
