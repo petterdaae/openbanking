@@ -10,7 +10,9 @@ import '../models/transaction.dart' as T;
 import 'category_list.dart';
 
 class TransactionDetails extends StatelessWidget {
-  const TransactionDetails({this.transactionId});
+  const TransactionDetails({
+    @required this.transactionId,
+  });
 
   final String transactionId;
 

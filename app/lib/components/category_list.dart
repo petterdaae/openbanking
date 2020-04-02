@@ -19,9 +19,9 @@ class CategoryListComponent extends StatelessWidget {
       ),
       itemCount: categories.length,
       itemBuilder: (context, index) => InkWell(
-        onTap: () => this.onCategoryTapped == null
+        onTap: this.onCategoryTapped == null
             ? null
-            : this.onCategoryTapped(categories[index].id),
+            : () => this.onCategoryTapped(categories[index].id),
         child: CategoryListItemComponent(
           category: categories[index],
         ),

@@ -2,6 +2,7 @@ import 'package:app/auth.dart';
 import 'package:app/dependencies.dart';
 import 'package:app/views/all_accounts.dart';
 import 'package:app/views/all_transactions.dart';
+import 'package:app/views/category_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -62,10 +63,12 @@ class _HomeState extends State<Home> {
   final List<Widget> _children = [
     AllAccounts(),
     AllTransactions(),
+    CategoryList(),
   ];
   final List<Widget> _title = [
     Text('Accounts'),
     Text('Transactions'),
+    Text('Categories'),
   ];
 
   @override
@@ -86,6 +89,10 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Icon(Icons.enhanced_encryption),
             title: Text('Transactions'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            title: Text('Categories'),
           ),
         ],
       ),
