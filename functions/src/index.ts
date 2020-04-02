@@ -43,16 +43,16 @@ async function updateTransactions() {
     }
 }
 
-export const update = functions.https.onRequest(async (request, response) => {
-    try {
-        await updateAccounts();
-        await updateTransactions();
-    } catch(e) {
-        response.status(500).send({
-            message: "Internal server error"
-        });
-    }
-    response.send({
-        message: "Successfully updated accounts and transactions"
-    });
-});
+//export const update = functions.https.onRequest(async (request, response) => {
+//    try {
+//        await updateAccounts();
+//        await updateTransactions();
+//    } catch(e) {
+//        response.status(500).send({
+//            message: "Internal server error"
+//        });
+//    }
+//    response.send({
+//        message: "Successfully updated accounts and transactions"
+//    });
+//});
