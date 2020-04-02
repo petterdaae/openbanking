@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CategoryList extends StatelessWidget {
+  const CategoryList({this.onCategoryTapped});
+
+  final void Function(String) onCategoryTapped;
+
   @override
   Widget build(BuildContext context) {
     Firestore firestore = Provider.of<Dependencies>(context).firestore;
@@ -26,6 +30,7 @@ class CategoryList extends StatelessWidget {
             snapshot.data.documents.map((c) => Category.parse(c)).toList();
         return CategoryListComponent(
           categories: categories,
+          onCategoryTapped: onCategoryTapped,
         );
       },
     );

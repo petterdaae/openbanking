@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/transaction.dart' as T;
+import 'category_list.dart';
 
 class TransactionDetails extends StatelessWidget {
   const TransactionDetails({this.transactionId});
@@ -31,6 +32,34 @@ class TransactionDetails extends StatelessWidget {
         final T.Transaction transaction = T.Transaction.parse(snapshot.data);
         return TransactionDetailsComponent(
           transaction: transaction,
+          children: <Widget>[
+            FlatButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Scaffold(
+                      appBar: AppBar(),
+                      body: CategoryList(
+                        onCategoryTapped: (String categoryId) {
+                          firestore
+                              .collection('users')
+                              .document(uid)
+                              .collection('transactions')
+                              .document(transaction.id)
+                              .updateData(<String, dynamic>{
+                            'categoryId': categoryId,
+                          });
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                  ),
+                );
+              },
+              color: Colors.green,
+              child: Text("Change category"),
+            ),
+          ],
         );
       },
     );

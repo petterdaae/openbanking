@@ -1,12 +1,15 @@
 import 'package:app/components/transaction_list_item.dart';
 import 'package:app/models/transaction.dart';
-import 'package:app/views/category_list.dart';
 import 'package:flutter/material.dart';
 
 class TransactionDetailsComponent extends StatelessWidget {
-  const TransactionDetailsComponent({this.transaction});
+  const TransactionDetailsComponent({
+    this.transaction,
+    this.children,
+  });
 
   final Transaction transaction;
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
@@ -17,21 +20,10 @@ class TransactionDetailsComponent extends StatelessWidget {
           TransactionListItemComponent(
             transaction: transaction,
           ),
-          FlatButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => Scaffold(
-                    appBar: AppBar(),
-                    body: CategoryList(),
-                  ),
-                ),
-              );
-            },
-            color: Colors.green,
-            child: Text("Change category"),
-          )
-        ],
+          transaction.categoryId == null
+              ? Text("No category")
+              : Text(transaction.categoryId),
+        ]..addAll(children == null ? List() : children),
       ),
     );
   }

@@ -3,9 +3,13 @@ import 'package:app/models/category.dart';
 import 'package:flutter/material.dart';
 
 class CategoryListComponent extends StatelessWidget {
-  const CategoryListComponent({this.categories});
+  const CategoryListComponent({
+    @required this.categories,
+    this.onCategoryTapped,
+  });
 
   final List<Category> categories;
+  final void Function(String) onCategoryTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +18,13 @@ class CategoryListComponent extends StatelessWidget {
         color: Colors.grey,
       ),
       itemCount: categories.length,
-      itemBuilder: (context, index) => CategoryListItemComponent(
-        category: categories[index],
+      itemBuilder: (context, index) => InkWell(
+        onTap: () => this.onCategoryTapped == null
+            ? null
+            : this.onCategoryTapped(categories[index].id),
+        child: CategoryListItemComponent(
+          category: categories[index],
+        ),
       ),
     );
   }
