@@ -5,6 +5,7 @@ import 'package:app/views/all_transactions.dart';
 import 'package:app/views/category_list.dart';
 import 'package:app/views/dev_tools.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:community_material_icon/community_material_icon.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -90,19 +91,19 @@ class _HomeState extends State<Home> {
         onTap: onTabTapped,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.email),
+            icon: Icon(CommunityMaterialIcons.bank),
             title: Text('Accounts'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.enhanced_encryption),
+            icon: Icon(CommunityMaterialIcons.cash_multiple),
             title: Text('Transactions'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add),
+            icon: Icon(CommunityMaterialIcons.shape),
             title: Text('Categories'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add),
+            icon: Icon(CommunityMaterialIcons.laptop),
             title: Text('Dev'),
           ),
         ],
