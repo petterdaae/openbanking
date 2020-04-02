@@ -1,14 +1,17 @@
 import 'package:app/components/transaction_list_item.dart';
+import 'package:app/models/category.dart';
 import 'package:app/models/transaction.dart';
 import 'package:flutter/material.dart';
 
 class TransactionDetailsComponent extends StatelessWidget {
   const TransactionDetailsComponent({
     this.transaction,
+    this.category,
     this.children,
   });
 
   final Transaction transaction;
+  final Category category;
   final List<Widget> children;
 
   @override
@@ -22,7 +25,7 @@ class TransactionDetailsComponent extends StatelessWidget {
           ),
           transaction.categoryId == null
               ? Text("No category")
-              : Text(transaction.categoryId),
+              : Text(category.name),
         ]..addAll(children == null ? List() : children),
       ),
     );

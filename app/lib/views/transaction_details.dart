@@ -1,6 +1,7 @@
 import 'package:app/auth.dart';
 import 'package:app/components/transaction_details.dart';
 import 'package:app/dependencies.dart';
+import 'package:app/models/category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -30,37 +31,52 @@ class TransactionDetails extends StatelessWidget {
       ) {
         if (!snapshot.hasData) return Text("Loading");
         final T.Transaction transaction = T.Transaction.parse(snapshot.data);
-        return TransactionDetailsComponent(
-          transaction: transaction,
-          children: <Widget>[
-            FlatButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => Scaffold(
-                      appBar: AppBar(),
-                      body: CategoryList(
-                        onCategoryTapped: (String categoryId) {
-                          firestore
-                              .collection('users')
-                              .document(uid)
-                              .collection('transactions')
-                              .document(transaction.id)
-                              .updateData(<String, dynamic>{
-                            'categoryId': categoryId,
-                          });
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ),
+        return StreamBuilder<DocumentSnapshot>(
+            stream: firestore
+                .collection('users')
+                .document(uid)
+                .collection('categories')
+                .document(transaction.categoryId)
+                .snapshots(),
+            builder: (
+              BuildContext context,
+              AsyncSnapshot<DocumentSnapshot> snapshot,
+            ) {
+              if (!snapshot.hasData) return Text("Loading");
+              final Category category = Category.parse(snapshot.data);
+              return TransactionDetailsComponent(
+                transaction: transaction,
+                category: category,
+                children: <Widget>[
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => Scaffold(
+                            appBar: AppBar(),
+                            body: CategoryList(
+                              onCategoryTapped: (String categoryId) {
+                                firestore
+                                    .collection('users')
+                                    .document(uid)
+                                    .collection('transactions')
+                                    .document(transaction.id)
+                                    .updateData(<String, dynamic>{
+                                  'categoryId': categoryId,
+                                });
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    color: Colors.green,
+                    child: Text("Change category"),
                   ),
-                );
-              },
-              color: Colors.green,
-              child: Text("Change category"),
-            ),
-          ],
-        );
+                ],
+              );
+            });
       },
     );
   }
