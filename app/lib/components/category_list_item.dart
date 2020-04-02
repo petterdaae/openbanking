@@ -11,6 +11,7 @@ class CategoryListItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      leading: Category.getIcon(category.icon),
       title: Text(category.name),
     );
   }

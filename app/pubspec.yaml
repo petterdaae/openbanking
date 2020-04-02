@@ -12,6 +12,7 @@ dependencies:
   firebase_auth:
   provider:
   cloud_firestore:
+  community_material_icon:
 
 dev_dependencies:
   flutter_test:
@@ -19,3 +20,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/netflix.png
+
