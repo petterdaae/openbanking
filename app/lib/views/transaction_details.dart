@@ -43,7 +43,8 @@ class TransactionDetails extends StatelessWidget {
               AsyncSnapshot<DocumentSnapshot> snapshot,
             ) {
               if (!snapshot.hasData) return Text("Loading");
-              final Category category = Category.parse(snapshot.data);
+              final Category category =
+                  !snapshot.data.exists ? null : Category.parse(snapshot.data);
               return TransactionDetailsComponent(
                 transaction: transaction,
                 category: category,

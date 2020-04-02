@@ -23,9 +23,7 @@ class TransactionDetailsComponent extends StatelessWidget {
           TransactionListItemComponent(
             transaction: transaction,
           ),
-          transaction.categoryId == null
-              ? Text("No category")
-              : Text(category.name),
+          category == null ? Text("No category") : Text(category.name),
         ]..addAll(children == null ? List() : children),
       ),
     );
