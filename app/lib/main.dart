@@ -3,6 +3,7 @@ import 'package:app/dependencies.dart';
 import 'package:app/views/all_accounts.dart';
 import 'package:app/views/all_transactions.dart';
 import 'package:app/views/category_list.dart';
+import 'package:app/views/dev_tools.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,10 @@ class Main extends StatelessWidget {
           create: (_) => Auth(),
         ),
       ],
-      child: MaterialApp(home: App()),
+      child: MaterialApp(
+        home: App(),
+        theme: ThemeData.light().copyWith(),
+      ),
     );
   }
 }
@@ -64,11 +68,13 @@ class _HomeState extends State<Home> {
     AllAccounts(),
     AllTransactions(),
     CategoryList(),
+    DevTools(),
   ];
   final List<Widget> _title = [
     Text('Accounts'),
     Text('Transactions'),
     Text('Categories'),
+    Text('Developer tools'),
   ];
 
   @override
@@ -79,6 +85,7 @@ class _HomeState extends State<Home> {
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
         onTap: onTabTapped,
         items: [
@@ -93,6 +100,10 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             title: Text('Categories'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            title: Text('Dev'),
           ),
         ],
       ),
