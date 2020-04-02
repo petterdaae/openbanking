@@ -8,16 +8,19 @@ class Category {
     @required this.name,
     @required this.id,
     @required this.icon,
+    @required this.balance,
   });
 
   final String name;
   final String id;
   final String icon;
+  final double balance;
 
   static Category parse(DocumentSnapshot snapshot) => Category(
         name: snapshot["name"],
         id: snapshot.documentID,
         icon: snapshot["icon"],
+        balance: snapshot["balance"],
       );
 
   static Widget getIcon(String name) {

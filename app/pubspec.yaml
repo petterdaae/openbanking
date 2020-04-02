@@ -13,6 +13,7 @@ dependencies:
   provider:
   cloud_firestore:
   community_material_icon:
+  flutter_masked_text:
 
 dev_dependencies:
   flutter_test:

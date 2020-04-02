@@ -10,12 +10,16 @@ class AccountListComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: accounts
-          .map(
-            (account) => AccountListItemComponent(account: account),
-          )
-          .toList(),
+    return ListView.separated(
+      itemCount: accounts.length,
+      separatorBuilder: (context, index) => Divider(
+        color: Colors.grey,
+      ),
+      itemBuilder: (context, index) {
+        return AccountListItemComponent(
+          account: accounts[index],
+        );
+      },
     );
   }
 }
