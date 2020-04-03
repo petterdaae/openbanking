@@ -15,3 +15,7 @@
 * *Possible solution*:  Precalculate each month. This can also be implemented efficiently.
 * *Possible solution*: Fetch all transactions and compute the sum client-side. This will cause a lot of database reads.
 
+### Inconsistency in transactions
+* One transaction appeared twice
+* Transaction did'nt have the same date as in the banking app
+* Might be mistakes I have made or bugs in the open api
