@@ -3,6 +3,7 @@ import 'package:app/models/category.dart';
 import 'package:app/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 
 class TransactionListItemComponent extends StatelessWidget {
   const TransactionListItemComponent({
@@ -18,7 +19,9 @@ class TransactionListItemComponent extends StatelessWidget {
     return ListTile(
       leading: AvatarIconComponent(category: category),
       title: Text(transaction.text),
-      subtitle: Text(transaction.accountingDate.toString()),
+      subtitle: Text(
+        DateFormat("dd. MMM yyyy").format(transaction.accountingDate),
+      ),
       trailing: Text(transaction.amount.toString()),
     );
   }
