@@ -1,3 +1,4 @@
+import 'package:app/components/avatar_icon.dart';
 import 'package:app/models/category.dart';
 import 'package:app/models/transaction.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class TransactionListItemComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Category.getIcon(category == null ? null : category.icon),
+      leading: AvatarIconComponent(category: category),
       title: Text(transaction.text),
       subtitle: Text(transaction.accountingDate.toString()),
       trailing: Text(transaction.amount.toString()),

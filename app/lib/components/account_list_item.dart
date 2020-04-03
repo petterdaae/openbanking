@@ -1,5 +1,5 @@
+import 'package:app/components/avatar_icon.dart';
 import 'package:app/models/account.dart';
-import 'package:app/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 
@@ -17,7 +17,7 @@ class AccountListItemComponent extends StatelessWidget {
       rightSymbol: " kr",
     );
     return ListTile(
-      leading: Category.getIcon(null),
+      leading: AvatarIconComponent(),
       title: Text(account.name),
       subtitle: Text(account.bank),
       trailing: Text(formatter.text),
