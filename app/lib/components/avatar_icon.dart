@@ -34,6 +34,27 @@ class AvatarIconComponent extends StatelessWidget {
           Colors.white,
           context,
         );
+      case "hobbies":
+        return _avatarIcon(
+          CommunityMaterialIcons.baseball_bat,
+          Colors.lightBlue,
+          Colors.white,
+          context,
+        );
+      case "servicessoftware":
+        return _avatarIcon(
+          CommunityMaterialIcons.earth,
+          Colors.black,
+          Colors.white,
+          context,
+        );
+      case "alcohol":
+        return _avatarIcon(
+          CommunityMaterialIcons.glass_mug,
+          Colors.purple,
+          Colors.white,
+          context,
+        );
       default:
         return _avatarIcon(
           CommunityMaterialIcons.help,
