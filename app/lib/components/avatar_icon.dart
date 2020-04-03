@@ -6,7 +6,7 @@ class AvatarIconComponent extends StatelessWidget {
   const AvatarIconComponent({
     this.name,
     this.category,
-    this.size = 50,
+    this.size = 20,
   });
 
   final String name;
@@ -25,26 +25,30 @@ class AvatarIconComponent extends StatelessWidget {
           CommunityMaterialIcons.food_apple,
           Colors.green,
           Colors.white,
+          context,
         );
       case "transport":
         return _avatarIcon(
           CommunityMaterialIcons.bus,
           Colors.deepOrange,
           Colors.white,
+          context,
         );
       default:
         return _avatarIcon(
           CommunityMaterialIcons.help,
           Colors.grey,
           Colors.white,
+          context,
         );
     }
   }
 
-  Widget _avatarIcon(IconData data, Color background, Color icon) {
+  Widget _avatarIcon(
+      IconData data, Color background, Color icon, BuildContext context) {
     return CircleAvatar(
-      radius: size,
       backgroundColor: background,
+      radius: size,
       child: Icon(
         data,
         color: icon,

@@ -27,7 +27,7 @@ class TransactionDetailsComponent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Padding(padding: EdgeInsets.all(8)),
-          AvatarIconComponent(category: category),
+          AvatarIconComponent(category: category, size: 50),
           Padding(padding: EdgeInsets.all(8)),
           transactionDescription(),
           Divider(color: Colors.grey),

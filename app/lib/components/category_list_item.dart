@@ -1,6 +1,8 @@
+import 'package:app/components/avatar_icon.dart';
+import 'package:app/dependencies.dart';
 import 'package:app/models/category.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:provider/provider.dart';
 
 class CategoryListItemComponent extends StatelessWidget {
   const CategoryListItemComponent({
@@ -11,16 +13,11 @@ class CategoryListItemComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MoneyMaskedTextController formatter = MoneyMaskedTextController(
-      initialValue: category.balance,
-      decimalSeparator: ".",
-      thousandSeparator: " ",
-      rightSymbol: " kr",
-    );
+    var utilities = Provider.of<Dependencies>(context).utilities;
     return ListTile(
-      leading: Category.getIcon(category.icon),
+      leading: AvatarIconComponent(category: category),
       title: Text(category.name),
-      trailing: Text(formatter.text),
+      trailing: Text(utilities.formatMoney(category.balance)),
     );
   }
 }
