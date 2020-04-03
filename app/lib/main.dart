@@ -5,6 +5,7 @@ import 'package:app/views/all_transactions.dart';
 import 'package:app/views/category_list.dart';
 import 'package:app/views/dev_tools.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class Main extends StatelessWidget {
           create: (_) => Dependencies(
             auth: FirebaseAuth.instance,
             firestore: Firestore.instance,
+            cloudFunctions: CloudFunctions.instance,
             email: 'petter.daae@gmail.com',
             password: 'Zl88d^Zy54ph96FE1Zy!n',
           ),

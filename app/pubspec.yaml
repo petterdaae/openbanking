@@ -14,6 +14,7 @@ dependencies:
   cloud_firestore:
   community_material_icon:
   flutter_masked_text:
+  cloud_functions:
 
 dev_dependencies:
   flutter_test:
