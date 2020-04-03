@@ -20,7 +20,7 @@ class Category {
         name: snapshot["name"],
         id: snapshot.documentID,
         icon: snapshot["icon"],
-        balance: snapshot["balance"],
+        balance: double.parse(snapshot["balance"].toString()),
       );
 
   static Widget getIcon(String name) {
