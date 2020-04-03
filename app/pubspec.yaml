@@ -15,6 +15,7 @@ dependencies:
   community_material_icon:
   flutter_masked_text:
   cloud_functions:
+  intl:
 
 dev_dependencies:
   flutter_test:

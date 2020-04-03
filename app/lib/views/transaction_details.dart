@@ -51,31 +51,38 @@ class TransactionDetails extends StatelessWidget {
                 transaction: transaction,
                 category: category,
                 children: <Widget>[
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => Scaffold(
-                            appBar: AppBar(),
-                            body: CategoryList(
-                              onCategoryTapped: (String categoryId) {
-                                firestore
-                                    .collection('users')
-                                    .document(uid)
-                                    .collection('transactions')
-                                    .document(transaction.id)
-                                    .updateData(<String, dynamic>{
-                                  'categoryId': categoryId,
-                                });
-                                Navigator.of(context).pop();
-                              },
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: FlatButton(
+                      padding: EdgeInsets.all(16),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => Scaffold(
+                              appBar: AppBar(),
+                              body: CategoryList(
+                                onCategoryTapped: (String categoryId) {
+                                  firestore
+                                      .collection('users')
+                                      .document(uid)
+                                      .collection('transactions')
+                                      .document(transaction.id)
+                                      .updateData(<String, dynamic>{
+                                    'categoryId': categoryId,
+                                  });
+                                  Navigator.of(context).pop();
+                                },
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                    color: Colors.green,
-                    child: Text("Change category"),
+                        );
+                      },
+                      color: Colors.green,
+                      child: Text(
+                        "Change category",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
                   ),
                 ],
               );

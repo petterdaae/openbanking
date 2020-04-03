@@ -1,5 +1,6 @@
 import 'package:app/auth.dart';
 import 'package:app/dependencies.dart';
+import 'package:app/utilities.dart';
 import 'package:app/views/all_accounts.dart';
 import 'package:app/views/all_transactions.dart';
 import 'package:app/views/category_list.dart';
@@ -25,6 +26,7 @@ class Main extends StatelessWidget {
             cloudFunctions: CloudFunctions.instance,
             email: 'petter.daae@gmail.com',
             password: 'Zl88d^Zy54ph96FE1Zy!n',
+            utilities: Utilities(),
           ),
         ),
         ChangeNotifierProvider<Auth>(
