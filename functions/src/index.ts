@@ -1,17 +1,17 @@
 import * as admin from 'firebase-admin';
 import Dependencies from './dependencies';
 import creatChangeCategory from './changeCategory';
-import createUpdate from './update';
+import createUpdateAccountsAndTransactions from './updateAccountsAndTransactions';
 import createResetCategories from './resetCategories';
+import createResetAccountsAndTransactions from './resetAccountsAndTransactions';
 
 admin.initializeApp();
 
 const deps: Dependencies = {
     firestore: admin.firestore(),
-    uid: 'EKDRNcDbDgUYbdGyFFUevSLBrW33'
 };
 
 export const changeCategory = creatChangeCategory(deps);
-export const update = createUpdate(deps);
+export const updateAccountsAndTransactions = createUpdateAccountsAndTransactions(deps);
 export const resetCategories = createResetCategories(deps);
-
+export const resetAccountsAndTransactions = createResetAccountsAndTransactions(deps);

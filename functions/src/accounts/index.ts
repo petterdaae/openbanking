@@ -82,4 +82,4 @@ export class Accounts {
     }
 }
 
-export default (deps: Dependencies) => new Accounts(deps.firestore, deps.uid);
+export default (deps: Dependencies, uid: string) => new Accounts(deps.firestore, uid);

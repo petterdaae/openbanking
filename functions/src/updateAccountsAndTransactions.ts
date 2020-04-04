@@ -4,8 +4,8 @@ import createTransactionsClient from "./transactions";
 import * as functions from "firebase-functions";
 import Dependencies from "./dependencies";
 
-async function updateAccounts(deps: Dependencies) {
-  const snapshot = await deps.firestore.collection('users').doc(deps.uid).get();
+async function updateAccounts(deps: Dependencies, uid: string) {
+  const snapshot = await deps.firestore.collection('users').doc(uid).get();
   const id = snapshot.get('sbanken_clientid');
   const secret = snapshot.get('sbanken_clientsecret');
   const nationalId = snapshot.get('nationalid');
@@ -13,17 +13,17 @@ async function updateAccounts(deps: Dependencies) {
   const sbankenClient = new SbankenClient(id, secret, nationalId);
   const accounts = await sbankenClient.getAccounts();
 
-  const accountsClient = createAccountsClient(deps);
+  const accountsClient = createAccountsClient(deps, uid);
   await accountsClient.updateAccounts(accounts);
 }
 
-async function updateTransactions(deps: Dependencies) {
-  const snapshot = await deps.firestore.collection('users').doc(deps.uid).get();
+async function updateTransactions(deps: Dependencies, uid: string) {
+  const snapshot = await deps.firestore.collection('users').doc(uid).get();
   const id = snapshot.get('sbanken_clientid');
   const secret = snapshot.get('sbanken_clientsecret');
   const nationalId = snapshot.get('nationalid');
   const sbankenClient = new SbankenClient(id, secret, nationalId);
-  const transactionsClient = createTransactionsClient(deps);
+  const transactionsClient = createTransactionsClient(deps, uid);
 
   const accounts = await sbankenClient.getAccounts();
   for (const account of accounts) {
@@ -33,18 +33,13 @@ async function updateTransactions(deps: Dependencies) {
   }
 }
 
-export default (deps: Dependencies) => functions.https.onRequest(async (request, response) => {
-  if (1 === 1) return;
-  try {
-    await updateAccounts(deps);
-    await updateTransactions(deps);
-  } catch(e) {
-    response.status(500).send({
-      message: "Internal server error"
-    });
+export default (deps: Dependencies) => functions.https.onCall(async (data, context) => {
+  if (!context.auth || !context.auth.uid) {
+    throw new functions.https.HttpsError('permission-denied', "Authentication failed");
   }
-  response.send({
+  await updateAccounts(deps, context.auth.uid);
+  await updateTransactions(deps, context.auth.uid);
+  return {
     message: "Successfully updated accounts and transactions"
-  });
+  };
 });
-

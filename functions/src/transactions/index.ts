@@ -5,16 +5,18 @@ import createAccountsClient, { Accounts } from '../accounts';
 class Transactions {
     deps: Dependencies;
     accounts: Accounts;
+    uid: string;
 
-    constructor(deps: Dependencies) {
+    constructor(deps: Dependencies, uid: string) {
         this.deps = deps;
-        this.accounts = createAccountsClient(deps)
+        this.uid = uid;
+        this.accounts = createAccountsClient(deps, uid);
     }
 
     private async equalTransactionsInFirestore(transaction: Transaction): Promise<number> {
         const snapshot = await this.deps.firestore
             .collection('users')
-            .doc(this.deps.uid)
+            .doc(this.uid)
             .collection('transactions')
             .where('accountingDate', '==', transaction.accountingDate)
             .where('interestDate', '==', transaction.interestDate)
@@ -27,10 +29,10 @@ class Transactions {
 
     private equalTransactionsInList(transaction: Transaction, transactions: Transaction[]): number {
         const equal = transactions.filter(_transaction => 
-            transaction.accountId == _transaction.accountId &&
-            transaction.accountingDate == _transaction.accountingDate &&
-            transaction.amount == _transaction.amount &&
-            transaction.text == _transaction.text
+            transaction.accountId === _transaction.accountId &&
+            transaction.accountingDate === _transaction.accountingDate &&
+            transaction.amount === _transaction.amount &&
+            transaction.text === _transaction.text
         );
         return equal.length;
     }
@@ -56,11 +58,11 @@ class Transactions {
             transaction.accountId = accountId;
             await this.deps.firestore
                 .collection('users')
-                .doc(this.deps.uid)
+                .doc(this.uid)
                 .collection('transactions')
                 .add(transaction);
         }
     }
 }
 
-export default (deps: Dependencies) => new Transactions(deps);
+export default (deps: Dependencies, uid: string) => new Transactions(deps, uid);

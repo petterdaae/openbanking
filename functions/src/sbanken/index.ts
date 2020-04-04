@@ -34,7 +34,7 @@ export default class SbankenClient {
 
     async getAccounts(): Promise<Account[]> {
         const accessToken = await this.getAccessToken();
-        const reponse = await fetch('https://api.sbanken.no/exec.bank/api/v1/accounts/', {
+        const response = await fetch('https://api.sbanken.no/exec.bank/api/v1/accounts/', {
             method: 'GET',
             headers: {
                 'Authorization': "Bearer " + accessToken,
@@ -43,9 +43,9 @@ export default class SbankenClient {
             }
         });
 
-        const json = await reponse.json();
+        const json = await response.json();
 
-        let accounts: Account[] = [];
+        const accounts: Account[] = [];
         for (const item of json.items) {
             const account: Account = {
                 accountId: item.accountId,
@@ -63,7 +63,7 @@ export default class SbankenClient {
 
     async getTransactions(sbankenAccountId: string) {
         const accessToken = await this.getAccessToken();
-        let response = await fetch(`https://api.sbanken.no/exec.bank/api/v1/transactions/${sbankenAccountId}`, {
+        const response = await fetch(`https://api.sbanken.no/exec.bank/api/v1/transactions/${sbankenAccountId}`, {
             method: 'GET',
             headers: {
                 'Authorization': "Bearer " + accessToken,
@@ -74,7 +74,7 @@ export default class SbankenClient {
 
         const json = await response.json();
 
-        let transactions: Transaction[] = [];
+        const transactions: Transaction[] = [];
         for (const item of json.items) {
             const transaction: Transaction = {
                 accountingDate: item.accountingDate,
