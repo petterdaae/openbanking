@@ -19,7 +19,7 @@ class AllTransactions extends StatelessWidget {
           .document(uid)
           .collection('transactions')
           .orderBy('accountingDate', descending: true)
-          .limit(30)
+          .limit(100)
           .snapshots(),
       builder: (
         BuildContext context,
