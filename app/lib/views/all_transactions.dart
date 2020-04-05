@@ -28,6 +28,9 @@ class AllTransactions extends StatelessWidget {
         if (!snapshot.hasData) return Text("Loading");
         List<T.Transaction> transactions = snapshot.data.documents
             .map((transaction) => T.Transaction.parse(transaction))
+            .where((transaction) =>
+                transaction.text != "Overføring mellom egne kontoer" &&
+                transaction.text != "KREDITRENTER")
             .toList();
         return StreamBuilder<QuerySnapshot>(
             stream: firestore
