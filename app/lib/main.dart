@@ -69,14 +69,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
-
   final List<Widget> _children = [
     AllAccounts(),
     AllTransactions(),
     CategoryList(),
     DevTools(),
   ];
-
   final List<Widget> _title = [
     Text('Accounts'),
     Text('Transactions'),
@@ -91,7 +89,6 @@ class _HomeState extends State<Home> {
         title: _title[_currentIndex],
       ),
       body: _children[_currentIndex],
-      floatingActionButton: floatingActionButton(),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
@@ -122,87 +119,5 @@ class _HomeState extends State<Home> {
     setState(() {
       _currentIndex = index;
     });
-  }
-
-  Widget floatingActionButton() {
-    if (_currentIndex == 1) {
-      return FloatingActionButton(
-        child: Icon(CommunityMaterialIcons.tune_vertical),
-        onPressed: () {
-          Scaffold.of(context).showBottomSheet(
-            (context) => Filters(),
-          );
-        },
-      );
-    }
-    return null;
-  }
-}
-
-class Filters extends StatelessWidget {
-  const Filters({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: new BoxDecoration(
-        color: Colors.white,
-        borderRadius: new BorderRadius.only(
-          topLeft: const Radius.circular(16),
-          topRight: const Radius.circular(16),
-        ),
-        boxShadow: [BoxShadow(color: Colors.black, blurRadius: 32)],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Padding(padding: EdgeInsets.all(8)),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
-            child: Text(
-              "General",
-              style: Theme.of(context).textTheme.caption,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
-            child: Wrap(
-              spacing: 8,
-              children: [
-                FilterChip(label: Text("Don't show hidden transactions"))
-              ],
-            ),
-          ),
-          Divider(
-            indent: 8,
-            endIndent: 8,
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
-            child: Text(
-              "Accounts",
-              style: Theme.of(context).textTheme.caption,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 0, 0, 8),
-            child: Wrap(
-              spacing: 8,
-              children: <Widget>[
-                FilterChip(label: Text("Kort")),
-                FilterChip(label: Text("Spare")),
-                FilterChip(label: Text("BSU")),
-                FilterChip(label: Text("Studielån")),
-                FilterChip(label: Text("Utgifter")),
-              ],
-            ),
-          ),
-          Padding(padding: EdgeInsets.all(8)),
-        ],
-      ),
-    );
   }
 }

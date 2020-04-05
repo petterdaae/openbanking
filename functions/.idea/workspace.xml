@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d1fff78-4b7b-426b-a1ff-4e1a3368a7f0" name="Default Changelist" comment="" />
+    <list default="true" id="4d1fff78-4b7b-426b-a1ff-4e1a3368a7f0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/accounts/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/accounts/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dependencies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dependencies.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sbanken/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/sbanken/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/transactions/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/transactions/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/update.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/updateAccountsAndTransactions.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,7 +56,7 @@
       <workItem from="1585857389845" duration="168000" />
       <workItem from="1585922867821" duration="3830000" />
       <workItem from="1586015248737" duration="1478000" />
-      <workItem from="1586016743005" duration="3127000" />
+      <workItem from="1586016743005" duration="2372000" />
     </task>
     <servers />
   </component>
