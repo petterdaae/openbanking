@@ -7,50 +7,47 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../models/transaction.dart' as T;
+import '../utilities.dart';
 
 class AllTransactions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Firestore firestore = Provider.of<Dependencies>(context).firestore;
     String uid = Provider.of<Auth>(context).uid;
-    return StreamBuilder<QuerySnapshot>(
-      stream: firestore
+    return StreamBuilder2<QuerySnapshot, QuerySnapshot>(
+      stream1: firestore
           .collection('users')
           .document(uid)
           .collection('transactions')
           .orderBy('accountingDate', descending: true)
           .limit(100)
           .snapshots(),
+      stream2: firestore
+          .collection('users')
+          .document(uid)
+          .collection('categories')
+          .snapshots(),
       builder: (
         BuildContext context,
-        AsyncSnapshot<QuerySnapshot> snapshot,
+        AsyncSnapshot<QuerySnapshot> transactionsSnapshot,
+        AsyncSnapshot<QuerySnapshot> categoriesSnapshot,
       ) {
-        if (!snapshot.hasData) return Text("Loading");
-        List<T.Transaction> transactions = snapshot.data.documents
+        if (!transactionsSnapshot.hasData || !categoriesSnapshot.hasData) {
+          return Text("Loading");
+        }
+
+        List<T.Transaction> transactions = transactionsSnapshot.data.documents
             .map((transaction) => T.Transaction.parse(transaction))
-            .where((transaction) =>
-                transaction.text != "Overføring mellom egne kontoer" &&
-                transaction.text != "KREDITRENTER")
             .toList();
-        return StreamBuilder<QuerySnapshot>(
-            stream: firestore
-                .collection('users')
-                .document(uid)
-                .collection('categories')
-                .snapshots(),
-            builder: (
-              BuildContext context,
-              AsyncSnapshot<QuerySnapshot> snapshot,
-            ) {
-              if (!snapshot.hasData) return Text("Loading");
-              List<Category> categories = snapshot.data.documents
-                  .map((category) => Category.parse(category))
-                  .toList();
-              return TransactionListComponent(
-                transactions: transactions,
-                categories: categories,
-              );
-            });
+
+        List<Category> categories = categoriesSnapshot.data.documents
+            .map((category) => Category.parse(category))
+            .toList();
+
+        return TransactionListComponent(
+          transactions: transactions,
+          categories: categories,
+        );
       },
     );
   }

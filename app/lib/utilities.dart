@@ -13,16 +13,15 @@ class Utilities {
   }
 }
 
-class StreamBuilder2<S1 extends Stream<S1>, S2 extends Stream<S2>>
-    extends StatelessWidget {
+class StreamBuilder2<S1, S2> extends StatelessWidget {
   const StreamBuilder2({
     @required this.stream1,
     @required this.stream2,
     @required this.builder,
   });
 
-  final S1 stream1;
-  final S2 stream2;
+  final Stream<S1> stream1;
+  final Stream<S2> stream2;
   final Widget Function(BuildContext, AsyncSnapshot<S1>, AsyncSnapshot<S2>)
       builder;
 
