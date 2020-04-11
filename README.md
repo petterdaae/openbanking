@@ -1,5 +1,6 @@
 # Open Banking
 ![](https://img.shields.io/badge/built%20with-firebase-orange.svg) ![](https://img.shields.io/badge/built%20with-flutter-blue.svg) ![](https://img.shields.io/badge/PRs-welcome-green.svg)
+
 ## Development setup
 * Install [flutter](https://flutter.dev/docs/get-started/install).
 * Install the [firebase cli](https://firebase.google.com/docs/cli).
@@ -12,19 +13,12 @@
 ## Goals
 * [x] Show accounts
 * [x] Show transactions
-* [ ] Transfer between accounts
-* [ ] Categorize transactions and get an overview of spendings
-* [ ] Automaitcally categorize transactions
-* [ ] Add expected incomes and expenses and show status on future economy
+* [x] Categorize transactions 
+* [ ] Get an overview of spendings (based on categories)
+* [ ] Create multilevel categories
 * [ ] Split transactions
+* [ ] Add expected incomes and expenses 
+* [ ] Show status on future economy
+* [ ] Automaitcally categorize transactions
+* [ ] Transfer between accounts
 
-## Problems
-### Showing the sum of transactions in a category within a timespan
-* *Current solution*: Does not support this (only supports the total). This can be precomputed efficiently using cloud functions.
-* *Possible solution*:  Precalculate each month. This can also be implemented efficiently.
-* *Possible solution*: Fetch all transactions and compute the sum client-side. This will cause a lot of database reads.
-
-### Inconsistency in transactions
-* One transaction appeared twice
-* Transaction did'nt have the same date as in the banking app
-* Might be mistakes I have made or bugs in the open api
