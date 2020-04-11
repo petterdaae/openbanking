@@ -1,10 +1,14 @@
 # Open Banking
-## Setup
-* Setup [flutter](https://flutter.dev/docs/get-started/install)
-* Setup the [firebase cli](https://firebase.google.com/docs/cli)
-* Set up your own firebase project for hosting all the backend stuff. You can do this in the [firebase console](https://console.firebase.com)
-* Setup an emulator. Both Android and iOS will do. You can create Android emulators in [android studio](https://developer.android.com/studio). You can also use a physical device.
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)]() 
+
+## Development setup
+* Install [flutter](https://flutter.dev/docs/get-started/install).
+* Install the [firebase cli](https://firebase.google.com/docs/cli).
+* Set up your own firebase project. You can do this in the [firebase console](https://console.firebase.com).
+* Setup an emulator. Both Android and iOS will do. You can create Android emulators in [android studio](https://developer.android.com/studio). You can also use a physical device if you want to.
 * Add firebase to [Android](https://firebase.google.com/docs/android/setup) or [iOS](https://firebase.google.com/docs/ios/setup).
+* Start your emulator or connect your physical device.
+* Run `flutter run` in `app/`.
 
 ## Goals
 * [x] Show accounts
