@@ -1,5 +1,5 @@
 # Open Banking
-[Made With Love](https://img.shields.io/badge/Made%20With-Love-orange.svg)
+![Made With Love](https://img.shields.io/badge/Made%20With-Love-orange.svg)
 
 ## Development setup
 * Install [flutter](https://flutter.dev/docs/get-started/install).
