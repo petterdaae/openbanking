@@ -3,8 +3,8 @@ import 'package:app/dependencies.dart';
 import 'package:app/utilities.dart';
 import 'package:app/views/all_accounts.dart';
 import 'package:app/views/all_transactions.dart';
-import 'package:app/views/category_list.dart';
 import 'package:app/views/dev_tools.dart';
+import 'package:app/views/spendings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:community_material_icon/community_material_icon.dart';
@@ -72,13 +72,13 @@ class _HomeState extends State<Home> {
   final List<Widget> _children = [
     AllAccounts(),
     AllTransactions(),
-    CategoryList(),
+    Spendings(),
     DevTools(),
   ];
   final List<Widget> _title = [
     Text('Accounts'),
     Text('Transactions'),
-    Text('Categories'),
+    Text('Spendings'),
     Text('Developer tools'),
   ];
 
@@ -104,7 +104,7 @@ class _HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: Icon(CommunityMaterialIcons.shape),
-            title: Text('Categories'),
+            title: Text('Spendings'),
           ),
           BottomNavigationBarItem(
             icon: Icon(CommunityMaterialIcons.laptop),

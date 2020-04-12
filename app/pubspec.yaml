@@ -16,6 +16,7 @@ dependencies:
   flutter_masked_text:
   cloud_functions:
   intl:
+  fl_chart:
 
 dev_dependencies:
   flutter_test:
