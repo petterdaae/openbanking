@@ -29,7 +29,6 @@ async function updateTransactions(deps: Dependencies, uid: string) {
   for (const account of accounts) {
     const transactions = await sbankenClient.getTransactions(account.accountId);
     await transactionsClient.updateTransactions(transactions);
-
   }
 }
 
