@@ -5,6 +5,7 @@ import 'package:app/models/category.dart';
 import 'package:app/models/transaction.dart' as T;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
@@ -18,7 +19,7 @@ class Spending extends StatefulWidget {
 class _SpendingState extends State<Spending> {
   _SpendingState() {
     final DateTime now = DateTime.now();
-    _dateTime = DateTime(now.year, now.month - 1, 1);
+    _dateTime = DateTime(now.year, now.month, 1);
   }
 
   DateTime _dateTime;
@@ -27,6 +28,8 @@ class _SpendingState extends State<Spending> {
   Widget build(BuildContext context) {
     Firestore firestore = Provider.of<Dependencies>(context).firestore;
     String uid = Provider.of<Auth>(context).uid;
+    final DateTime firstInThisMonth = this._dateTime;
+    final DateTime firstInNextMonth = Jiffy(this._dateTime).add(months: 1);
     return StreamBuilder2<QuerySnapshot, QuerySnapshot>(
       stream1: firestore
           .collection('users')
@@ -37,7 +40,8 @@ class _SpendingState extends State<Spending> {
           .collection('users')
           .document(uid)
           .collection('transactions')
-          .where('accountingDate', isGreaterThanOrEqualTo: this._dateTime)
+          .where('accountingDate', isGreaterThanOrEqualTo: firstInThisMonth)
+          .where('accountingDate', isLessThan: firstInNextMonth)
           .snapshots(),
       builder: (
         BuildContext context,
@@ -56,8 +60,14 @@ class _SpendingState extends State<Spending> {
         return SpendingComponent(
           dateTime: this._dateTime,
           spending: _buildTupleList(transactions, categories),
-          onNextPressed: () {},
-          onPrevPressed: () {},
+          onNextPressed: () {
+            this.setState(
+                () => this._dateTime = Jiffy(this._dateTime).add(months: 1));
+          },
+          onPrevPressed: () {
+            this.setState(() =>
+                this._dateTime = Jiffy(this._dateTime).subtract(months: 1));
+          },
         );
       },
     );
