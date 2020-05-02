@@ -14,7 +14,7 @@
 * [x] Show accounts
 * [x] Show transactions
 * [x] Categorize transactions 
-* [ ] Get an overview of spendings (based on categories)
+* [x] Get an overview of spendings (based on categories)
 * [ ] Create multilevel categories
 * [ ] Split transactions
 * [ ] Add expected incomes and expenses 
