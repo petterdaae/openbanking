@@ -4,7 +4,7 @@ import 'package:app/utilities.dart';
 import 'package:app/views/all_accounts.dart';
 import 'package:app/views/all_transactions.dart';
 import 'package:app/views/dev_tools.dart';
-import 'package:app/views/spendings.dart';
+import 'package:app/views/spending.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:community_material_icon/community_material_icon.dart';
@@ -72,13 +72,13 @@ class _HomeState extends State<Home> {
   final List<Widget> _children = [
     AllAccounts(),
     AllTransactions(),
-    Spendings(),
+    Spending(),
     DevTools(),
   ];
   final List<Widget> _title = [
     Text('Accounts'),
     Text('Transactions'),
-    Text('Spendings'),
+    Text('Spending'),
     Text('Developer tools'),
   ];
 
