@@ -15,14 +15,6 @@ export default (deps: Dependencies) => functions.https.onCall(async (data, conte
     });
   }));
 
-  const categories = await deps.firestore.collection('users').doc(context.auth.uid).collection('categories').get();
-  await Promise.all(categories.docs.map(async category => {
-    // @ts-ignore
-    await deps.firestore.collection('users').doc(context.auth.uid).collection('categories').doc(category.id).update({
-      'balance': 0
-    });
-  }));
-
   return {
     message: "All categorization removed"
   };
