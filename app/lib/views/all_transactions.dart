@@ -4,7 +4,6 @@ import 'package:app/components/transaction_list_item.dart';
 import 'package:app/dependencies.dart';
 import 'package:app/models/category.dart';
 import 'package:app/models/transaction.dart' as T;
-import 'package:app/views/transaction_details.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -54,20 +53,9 @@ class _AllTransactionsState extends State<AllTransactions> {
               .orderBy('accountingDate', descending: true),
           itemBuilder: (BuildContext context, DocumentSnapshot snapshot) {
             final T.Transaction transaction = T.Transaction.parse(snapshot);
-            return InkWell(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => TransactionDetails(
-                      transactionId: transaction.id,
-                    ),
-                  ),
-                );
-              },
-              child: TransactionListItemComponent(
-                transaction: transaction,
-                category: getCategory(transaction, categories),
-              ),
+            return TransactionListItemComponent(
+              transaction: transaction,
+              category: getCategory(transaction, categories),
             );
           },
           loaderBuilder: (BuildContext context) => Text("Loading..."),
