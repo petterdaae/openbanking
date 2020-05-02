@@ -17,6 +17,7 @@ dependencies:
   cloud_functions:
   intl:
   fl_chart:
+  tuple:
 
 dev_dependencies:
   flutter_test:
