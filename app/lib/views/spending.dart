@@ -37,8 +37,7 @@ class _SpendingState extends State<Spending> {
           .collection('users')
           .document(uid)
           .collection('transactions')
-          .where('accountingDate',
-              isGreaterThanOrEqualTo: this._dateTime.millisecondsSinceEpoch)
+          .where('accountingDate', isGreaterThanOrEqualTo: this._dateTime)
           .snapshots(),
       builder: (
         BuildContext context,
