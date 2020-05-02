@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import btoa from 'btoa';
 import { Account, Transaction } from '../types';
+import admin from "firebase-admin";
 
 export default class SbankenClient {
     clientId: string;
@@ -77,8 +78,8 @@ export default class SbankenClient {
         const transactions: Transaction[] = [];
         for (const item of json.items) {
             const transaction: Transaction = {
-                accountingDate: item.accountingDate,
-                interestDate: item.interestDate,
+                accountingDate: this.getTimestamp(item.accountingDate),
+                interestDate: this.getTimestamp(item.interestDate),
                 amount: item.amount,
                 text: item.text,
                 accountId: 'UKNOWN',
@@ -88,5 +89,11 @@ export default class SbankenClient {
         }
 
         return transactions;
+    }
+
+    getTimestamp(date: string): admin.firestore.Timestamp | null {
+        if (!date) return null;
+        const dateObj = new Date(date);
+        return admin.firestore.Timestamp.fromDate(dateObj);
     }
 }
