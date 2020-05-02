@@ -104,7 +104,7 @@ class _HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: Icon(CommunityMaterialIcons.shape),
-            title: Text('Spendings'),
+            title: Text('Spending'),
           ),
           BottomNavigationBarItem(
             icon: Icon(CommunityMaterialIcons.laptop),
