@@ -62,6 +62,13 @@ class AvatarIconComponent extends StatelessWidget {
           Colors.white,
           context,
         );
+      case "income":
+        return _avatarIcon(
+          CommunityMaterialIcons.cash_usd,
+          Colors.yellow,
+          Colors.black,
+          context,
+        );
       default:
         return _avatarIcon(
           CommunityMaterialIcons.help,
