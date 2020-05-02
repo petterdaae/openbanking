@@ -18,6 +18,7 @@ dependencies:
   intl:
   fl_chart:
   tuple:
+  jiffy:
 
 dev_dependencies:
   flutter_test:
