@@ -19,7 +19,6 @@ class Transactions {
             .doc(this.uid)
             .collection('transactions')
             .where('accountingDate', '==', transaction.accountingDate)
-            .where('interestDate', '==', transaction.interestDate)
             .where('amount', '==', transaction.amount)
             .where('text', '==', transaction.text)
             .where('accountId', '==', transaction.accountId)
