@@ -55,6 +55,13 @@ class AvatarIconComponent extends StatelessWidget {
           Colors.white,
           context,
         );
+      case "hide":
+        return _avatarIcon(
+          CommunityMaterialIcons.eye_off,
+          Colors.grey,
+          Colors.white,
+          context,
+        );
       default:
         return _avatarIcon(
           CommunityMaterialIcons.help,
