@@ -34,59 +34,60 @@ class TransactionDetails extends StatelessWidget {
         if (!snapshot.hasData) return Text("Loading");
         final T.Transaction transaction = T.Transaction.parse(snapshot.data);
         return StreamBuilder<DocumentSnapshot>(
-            stream: firestore
-                .collection('users')
-                .document(uid)
-                .collection('categories')
-                .document(transaction.categoryId)
-                .snapshots(),
-            builder: (
-              BuildContext context,
-              AsyncSnapshot<DocumentSnapshot> snapshot,
-            ) {
-              if (!snapshot.hasData) return Text("Loading");
-              final Category category =
-                  !snapshot.data.exists ? null : Category.parse(snapshot.data);
-              return TransactionDetailsComponent(
-                transaction: transaction,
-                category: category,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: FlatButton(
-                      padding: EdgeInsets.all(16),
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => Scaffold(
-                              appBar: AppBar(),
-                              body: CategoryList(
-                                onCategoryTapped: (String categoryId) {
-                                  firestore
-                                      .collection('users')
-                                      .document(uid)
-                                      .collection('transactions')
-                                      .document(transaction.id)
-                                      .updateData(<String, dynamic>{
-                                    'categoryId': categoryId,
-                                  });
-                                  Navigator.of(context).pop();
-                                },
-                              ),
+          stream: firestore
+              .collection('users')
+              .document(uid)
+              .collection('categories')
+              .document(transaction.categoryId)
+              .snapshots(),
+          builder: (
+            BuildContext context,
+            AsyncSnapshot<DocumentSnapshot> snapshot,
+          ) {
+            if (!snapshot.hasData) return Text("Loading");
+            final Category category =
+                !snapshot.data.exists ? null : Category.parse(snapshot.data);
+            return TransactionDetailsComponent(
+              transaction: transaction,
+              category: category,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: FlatButton(
+                    padding: EdgeInsets.all(16),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => Scaffold(
+                            appBar: AppBar(),
+                            body: CategoryList(
+                              onCategoryTapped: (String categoryId) {
+                                firestore
+                                    .collection('users')
+                                    .document(uid)
+                                    .collection('transactions')
+                                    .document(transaction.id)
+                                    .updateData(<String, dynamic>{
+                                  'categoryId': categoryId,
+                                });
+                                Navigator.of(context).pop();
+                              },
                             ),
                           ),
-                        );
-                      },
-                      color: Colors.green,
-                      child: Text(
-                        "Change category",
-                        style: TextStyle(color: Colors.white),
-                      ),
+                        ),
+                      );
+                    },
+                    color: Colors.green,
+                    child: Text(
+                      "Change category",
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
-                ],
-              );
-            });
+                ),
+              ],
+            );
+          },
+        );
       },
     );
   }
