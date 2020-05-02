@@ -46,13 +46,13 @@ class TransactionDetailsComponent extends StatelessWidget {
           keyValue(
             CommunityMaterialIcons.calendar,
             "Accounting date",
-            DateFormat("dd. MMM").format(transaction.accountingDate),
+            DateFormat("dd. MMM").format(transaction.accountingDate.toDate()),
           ),
           Divider(color: Colors.grey),
           keyValue(
             CommunityMaterialIcons.calendar,
             "Interest date",
-            DateFormat("dd. MMM").format(transaction.interestDate),
+            DateFormat("dd. MMM").format(transaction.interestDate.toDate()),
           ),
           Divider(color: Colors.grey),
           Padding(padding: EdgeInsets.all(8)),
