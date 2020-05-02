@@ -3,13 +3,30 @@ import 'package:app/components/transaction_list.dart';
 import 'package:app/dependencies.dart';
 import 'package:app/models/category.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../models/transaction.dart' as T;
 import '../utilities.dart';
 
-class AllTransactions extends StatelessWidget {
+class AllTransactions extends StatefulWidget {
+  @override
+  _AllTransactionsState createState() => _AllTransactionsState();
+}
+
+class _AllTransactionsState extends State<AllTransactions> {
+  int limit;
+  ScrollController scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    limit = 10;
+    scrollController = ScrollController();
+    scrollController.addListener(scrollListener);
+  }
+
   @override
   Widget build(BuildContext context) {
     Firestore firestore = Provider.of<Dependencies>(context).firestore;
@@ -20,7 +37,7 @@ class AllTransactions extends StatelessWidget {
           .document(uid)
           .collection('transactions')
           .orderBy('accountingDate', descending: true)
-          .limit(100)
+          .limit(limit)
           .snapshots(),
       stream2: firestore
           .collection('users')
@@ -47,8 +64,21 @@ class AllTransactions extends StatelessWidget {
         return TransactionListComponent(
           transactions: transactions,
           categories: categories,
+          scrollController: scrollController,
         );
       },
     );
+  }
+
+  scrollListener() {
+    if (scrollController.offset >= scrollController.position.maxScrollExtent) {
+      Scaffold.of(context).showSnackBar(SnackBar(
+        content: Text("loading more transactions"),
+        duration: Duration(seconds: 1),
+      ));
+      setState(() {
+        limit += 10;
+      });
+    }
   }
 }

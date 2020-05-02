@@ -9,10 +9,12 @@ class TransactionListComponent extends StatelessWidget {
   const TransactionListComponent({
     @required this.transactions,
     @required this.categories,
+    this.scrollController,
   });
 
   final List<Transaction> transactions;
   final List<Category> categories;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class TransactionListComponent extends StatelessWidget {
         color: Colors.grey,
       ),
       itemCount: transactions.length,
+      controller: scrollController,
       itemBuilder: (context, index) => InkWell(
         onTap: () {
           Navigator.of(context).push(
