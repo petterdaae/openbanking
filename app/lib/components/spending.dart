@@ -1,9 +1,14 @@
+import 'package:app/components/avatar_icon.dart';
 import 'package:app/models/category.dart';
+import 'package:app/utilities.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
+
+import '../dependencies.dart';
 
 class SpendingComponent extends StatelessWidget {
   const SpendingComponent({
@@ -48,12 +53,14 @@ class SpendingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Utilities utilities = Provider.of<Dependencies>(context).utilities;
     return SingleChildScrollView(
       child: Column(
         children: spending
             .map((tup) => ListTile(
+                  leading: AvatarIconComponent(category: tup.item1),
                   title: Text(tup.item1.name),
-                  trailing: Text(tup.item2.toString()),
+                  trailing: Text(utilities.formatMoney(tup.item2)),
                 ))
             .toList(),
       ),
