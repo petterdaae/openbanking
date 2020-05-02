@@ -6,6 +6,7 @@ import 'package:app/models/transaction.dart' as T;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tuple/tuple.dart';
 
 import '../utilities.dart';
 
@@ -60,5 +61,21 @@ class _SpendingState extends State<Spending> {
         );
       },
     );
+  }
+
+  List<Tuple2<Category, double>> _buildTupleList(
+    List<T.Transaction> transactions,
+    List<Category> categories,
+  ) {
+    List<Tuple2<Category, double>> result = List();
+
+    for (Category category in categories) {
+      final List<T.Transaction> matching =
+          transactions.where((t) => t.categoryId == category.id).toList();
+      final double sum = matching.fold(0, (prev, elem) => prev + elem.amount);
+      result.add(Tuple2(category, sum));
+    }
+
+    return result;
   }
 }
