@@ -18,7 +18,7 @@ class Spending extends StatefulWidget {
 class _SpendingState extends State<Spending> {
   _SpendingState() {
     final DateTime now = DateTime.now();
-    _dateTime = DateTime(now.year, now.month, 1);
+    _dateTime = DateTime(now.year, now.month - 1, 1);
   }
 
   DateTime _dateTime;
@@ -37,7 +37,8 @@ class _SpendingState extends State<Spending> {
           .collection('users')
           .document(uid)
           .collection('transactions')
-          .where('accountingDate', isGreaterThanOrEqualTo: this._dateTime)
+          .where('accountingDate',
+              isGreaterThanOrEqualTo: this._dateTime.millisecondsSinceEpoch)
           .snapshots(),
       builder: (
         BuildContext context,
@@ -55,7 +56,7 @@ class _SpendingState extends State<Spending> {
 
         return SpendingComponent(
           dateTime: this._dateTime,
-          transactions: transactions,
+          spending: _buildTupleList(transactions, categories),
           onNextPressed: () {},
           onPrevPressed: () {},
         );

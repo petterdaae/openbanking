@@ -1,18 +1,19 @@
-import 'package:app/models/transaction.dart';
+import 'package:app/models/category.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:tuple/tuple.dart';
 
 class SpendingComponent extends StatelessWidget {
   const SpendingComponent({
-    @required this.transactions,
+    @required this.spending,
     @required this.dateTime,
     @required this.onNextPressed,
     @required this.onPrevPressed,
   });
 
-  final List<Transaction> transactions;
+  final List<Tuple2<Category, double>> spending;
   final DateTime dateTime;
   final Function onNextPressed;
   final Function onPrevPressed;
@@ -20,6 +21,7 @@ class SpendingComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
@@ -30,8 +32,31 @@ class SpendingComponent extends StatelessWidget {
           ),
         ),
         Divider(color: Colors.grey),
-        Center(child: Text("Spending")),
+        SpendingList(spending: this.spending),
+        // SpendingList(),
       ],
+    );
+  }
+}
+
+class SpendingList extends StatelessWidget {
+  const SpendingList({
+    @required this.spending,
+  });
+
+  final List<Tuple2<Category, double>> spending;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: spending
+            .map((tup) => ListTile(
+                  title: Text(tup.item1.name),
+                  trailing: Text(tup.item2.toString()),
+                ))
+            .toList(),
+      ),
     );
   }
 }
