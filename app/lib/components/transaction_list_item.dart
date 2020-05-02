@@ -20,7 +20,7 @@ class TransactionListItemComponent extends StatelessWidget {
       leading: AvatarIconComponent(category: category),
       title: Text(transaction.text),
       subtitle: Text(
-        DateFormat("dd. MMM yyyy").format(transaction.accountingDate),
+        DateFormat("dd. MMM yyyy").format(transaction.accountingDate.toDate()),
       ),
       trailing: Text(transaction.amount.toString()),
     );
