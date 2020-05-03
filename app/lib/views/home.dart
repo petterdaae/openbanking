@@ -31,6 +31,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: _title[_currentIndex],
       ),
+      drawer: SideNav(),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -62,5 +63,32 @@ class _HomeState extends State<Home> {
     setState(() {
       _currentIndex = index;
     });
+  }
+}
+
+class SideNav extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        // Important: Remove any padding from the ListView.
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Text(
+              'Open Banking',
+              style: TextStyle(color: Colors.white),
+            ),
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+          ),
+          ListTile(title: Text('Home'), onTap: () {}),
+          ListTile(title: Text('Categories'), onTap: () {}),
+          ListTile(title: Text('Settings'), onTap: () {}),
+          ListTile(title: Text('Dev'), onTap: () {}),
+        ],
+      ),
+    );
   }
 }
