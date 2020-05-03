@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
-import '../dependencies.dart';
-import '../utilities.dart';
+import '../providers/dependencies.dart';
+import '../providers/utilities.dart';
 import 'avatar_icon.dart';
 
 class SpendingList extends StatelessWidget {

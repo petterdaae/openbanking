@@ -1,4 +1,4 @@
-import 'package:app/dependencies.dart';
+import 'package:app/providers/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
