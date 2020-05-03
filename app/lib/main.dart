@@ -55,8 +55,6 @@ class App extends StatelessWidget {
               ),
             ),
           )
-        : Scaffold(
-            body: Home(),
-          );
+        : Home();
   }
 }
