@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: _title[_currentIndex],
+        title: getTitle(),
       ),
       drawer: SideNav(navigator: this.navigate),
       body: getBody(),
@@ -80,6 +80,21 @@ class _HomeState extends State<Home> {
         return DevTools();
       default:
         return Center(child: Text("Navigation Error"));
+    }
+  }
+
+  Widget getTitle() {
+    switch (page) {
+      case Page.Home:
+        return _title[_currentIndex];
+      case Page.Categories:
+        return Text("Categories");
+      case Page.Settings:
+        return Text("Settings");
+      case Page.Dev:
+        return Text("Dev");
+      default:
+        return Text("Navigation Error");
     }
   }
 
