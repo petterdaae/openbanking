@@ -5,6 +5,8 @@ import 'package:app/views/spending.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 
+enum Page { Home, Categories, Settings, Dev }
+
 class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _HomeState();
@@ -12,6 +14,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
+  Page page = Page.Home;
+
   final List<Widget> _children = [
     AllAccounts(),
     AllTransactions(),
@@ -31,31 +35,33 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: _title[_currentIndex],
       ),
-      drawer: SideNav(),
-      body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
-        onTap: onTabTapped,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(CommunityMaterialIcons.bank),
-            title: Text('Accounts'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CommunityMaterialIcons.cash_multiple),
-            title: Text('Transactions'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CommunityMaterialIcons.shape),
-            title: Text('Spending'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CommunityMaterialIcons.laptop),
-            title: Text('Dev'),
-          ),
-        ],
-      ),
+      drawer: SideNav(navigator: this.navigate),
+      body: getBody(),
+      bottomNavigationBar: page == Page.Home
+          ? BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              currentIndex: _currentIndex,
+              onTap: onTabTapped,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(CommunityMaterialIcons.bank),
+                  title: Text('Accounts'),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(CommunityMaterialIcons.cash_multiple),
+                  title: Text('Transactions'),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(CommunityMaterialIcons.shape),
+                  title: Text('Spending'),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(CommunityMaterialIcons.laptop),
+                  title: Text('Dev'),
+                ),
+              ],
+            )
+          : null,
     );
   }
 
@@ -64,9 +70,34 @@ class _HomeState extends State<Home> {
       _currentIndex = index;
     });
   }
+
+  Widget getBody() {
+    switch (page) {
+      case Page.Home:
+        return _children[_currentIndex];
+      case Page.Categories:
+        return Text("Categories");
+      case Page.Settings:
+        return Text("Settings");
+      case Page.Dev:
+        return Text("Dev");
+      default:
+        return Text("Navigation Error");
+    }
+  }
+
+  void navigate(Page newPage) {
+    setState(() {
+      page = newPage;
+    });
+  }
 }
 
 class SideNav extends StatelessWidget {
+  const SideNav({@required this.navigator});
+
+  final Function(Page) navigator;
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -83,12 +114,23 @@ class SideNav extends StatelessWidget {
               color: Colors.blue,
             ),
           ),
-          ListTile(title: Text('Home'), onTap: () {}),
-          ListTile(title: Text('Categories'), onTap: () {}),
-          ListTile(title: Text('Settings'), onTap: () {}),
-          ListTile(title: Text('Dev'), onTap: () {}),
+          ListTile(
+              title: Text('Home'), onTap: () => navigate(context, Page.Home)),
+          ListTile(
+              title: Text('Categories'),
+              onTap: () => navigate(context, Page.Categories)),
+          ListTile(
+              title: Text('Settings'),
+              onTap: () => navigate(context, Page.Settings)),
+          ListTile(
+              title: Text('Dev'), onTap: () => navigate(context, Page.Dev)),
         ],
       ),
     );
+  }
+
+  void navigate(BuildContext context, Page newPage) {
+    Navigator.of(context).pop();
+    this.navigator(newPage);
   }
 }
