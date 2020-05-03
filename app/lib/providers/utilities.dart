@@ -9,7 +9,7 @@ class Utilities {
       thousandSeparator: " ",
       rightSymbol: " kr",
     );
-    return formatter.text;
+    return amount >= 0 ? formatter.text : "- " + formatter.text;
   }
 }
 
