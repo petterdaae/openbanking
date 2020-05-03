@@ -1,9 +1,12 @@
 import 'package:app/views/all_accounts.dart';
 import 'package:app/views/all_transactions.dart';
 import 'package:app/views/dev_tools.dart';
+import 'package:app/views/settings.dart';
 import 'package:app/views/spending.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
+
+import 'categories.dart';
 
 enum Page { Home, Categories, Settings, Dev }
 
@@ -20,13 +23,11 @@ class _HomeState extends State<Home> {
     AllAccounts(),
     AllTransactions(),
     Spending(),
-    DevTools(),
   ];
   final List<Widget> _title = [
     Text('Accounts'),
     Text('Transactions'),
     Text('Spending'),
-    Text('Developer tools'),
   ];
 
   @override
@@ -55,10 +56,6 @@ class _HomeState extends State<Home> {
                   icon: Icon(CommunityMaterialIcons.shape),
                   title: Text('Spending'),
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(CommunityMaterialIcons.laptop),
-                  title: Text('Dev'),
-                ),
               ],
             )
           : null,
@@ -76,13 +73,13 @@ class _HomeState extends State<Home> {
       case Page.Home:
         return _children[_currentIndex];
       case Page.Categories:
-        return Text("Categories");
+        return Categories();
       case Page.Settings:
-        return Text("Settings");
+        return Settings();
       case Page.Dev:
-        return Text("Dev");
+        return DevTools();
       default:
-        return Text("Navigation Error");
+        return Center(child: Text("Navigation Error"));
     }
   }
 
