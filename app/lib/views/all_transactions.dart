@@ -1,14 +1,14 @@
-import 'package:app/auth.dart';
 import 'package:app/components/transaction_list.dart';
-import 'package:app/dependencies.dart';
 import 'package:app/models/category.dart';
+import 'package:app/providers/auth.dart';
+import 'package:app/providers/dependencies.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../models/transaction.dart' as T;
-import '../utilities.dart';
+import '../providers/utilities.dart';
 
 class AllTransactions extends StatefulWidget {
   @override

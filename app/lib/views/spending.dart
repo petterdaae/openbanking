@@ -1,15 +1,15 @@
-import 'package:app/auth.dart';
 import 'package:app/components/spending.dart';
-import 'package:app/dependencies.dart';
 import 'package:app/models/category.dart';
 import 'package:app/models/transaction.dart' as T;
+import 'package:app/providers/auth.dart';
+import 'package:app/providers/dependencies.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 import 'package:tuple/tuple.dart';
 
-import '../utilities.dart';
+import '../providers/utilities.dart';
 
 class Spending extends StatefulWidget {
   @override

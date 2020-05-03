@@ -1,7 +1,7 @@
-import 'package:app/auth.dart';
 import 'package:app/components/account_list.dart';
-import 'package:app/dependencies.dart';
 import 'package:app/models/account.dart';
+import 'package:app/providers/auth.dart';
+import 'package:app/providers/dependencies.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';

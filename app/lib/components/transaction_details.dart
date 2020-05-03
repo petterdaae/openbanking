@@ -1,7 +1,7 @@
 import 'package:app/components/avatar_icon.dart';
-import 'package:app/dependencies.dart';
 import 'package:app/models/category.dart';
 import 'package:app/models/transaction.dart';
+import 'package:app/providers/dependencies.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
