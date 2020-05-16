@@ -100,4 +100,23 @@ class AvatarIconComponent extends StatelessWidget {
       backgroundImage: AssetImage(path),
     );
   }
+
+  static List<AvatarIconComponent> allIcons() {
+    return [
+      "netflix",
+      "food",
+      "transport",
+      "hobbies",
+      "servicessoftware",
+      "alcohol",
+      "hide",
+      "income",
+      "sbanken",
+    ]
+        .map((name) => AvatarIconComponent(
+              name: name,
+              size: 50,
+            ))
+        .toList();
+  }
 }
