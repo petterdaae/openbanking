@@ -17,7 +17,9 @@ class AccountListItemComponent extends StatelessWidget {
       rightSymbol: " kr",
     );
     return ListTile(
-      leading: AvatarIconComponent(),
+      leading: AvatarIconComponent(
+        name: account.bank,
+      ),
       title: Text(account.name),
       subtitle: Text(account.bank),
       trailing: Text(formatter.text),
