@@ -20,14 +20,13 @@ class Transactions {
             .collection('transactions')
             .where('accountingDate', '==', transaction.accountingDate)
             .where('amount', '==', transaction.amount)
-            .where('text', '==', transaction.text)
             .where('accountId', '==', transaction.accountId)
             .get();
         return snapshot.size;
     }
 
     private equalTransactionsInList(transaction: Transaction, transactions: Transaction[]): number {
-        const equal = transactions.filter(_transaction => 
+        const equal = transactions.filter(_transaction =>
             transaction.accountId === _transaction.accountId &&
             transaction.accountingDate === _transaction.accountingDate &&
             transaction.amount === _transaction.amount &&
@@ -46,7 +45,7 @@ class Transactions {
         const equalTransactionsInFirestore = await this.equalTransactionsInFirestore(transaction);
         const equalTransactionsInList = this.equalTransactionsInList(transaction, transactions);
         const difference = equalTransactionsInList - equalTransactionsInFirestore;
-        
+
         if (difference < 0) {
             throw Error("There should not be more duplicates of a transaction in firestore than retrieved from the api");
         }
