@@ -69,6 +69,8 @@ class AvatarIconComponent extends StatelessWidget {
           Colors.black,
           context,
         );
+      case "sbanken":
+        return _avatarImage("assets/sbanken.png");
       default:
         return _avatarIcon(
           CommunityMaterialIcons.help,
@@ -95,7 +97,7 @@ class AvatarIconComponent extends StatelessWidget {
   Widget _avatarImage(String path) {
     return CircleAvatar(
       radius: size,
-      backgroundImage: AssetImage("assets/netflix.png"),
+      backgroundImage: AssetImage(path),
     );
   }
 }
