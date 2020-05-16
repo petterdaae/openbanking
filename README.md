@@ -6,7 +6,7 @@
 * Install the [firebase cli](https://firebase.google.com/docs/cli).
 * Set up your own firebase project. You can do this in the [firebase console](https://console.firebase.com).
 * Setup an emulator. Both Android and iOS will do. You can create Android emulators in [android studio](https://developer.android.com/studio). You can also use a physical device if you want to.
-* Add firebase to [Android](https://firebase.google.com/docs/android/setup) or [iOS](https://firebase.google.com/docs/ios/setup).
+* Add firebase to [Android](https://firebase.google.com/docs/android/setup) (*Option 1*) or [iOS](https://firebase.google.com/docs/ios/setup).
 * Start your emulator or connect your physical device.
 * Run `flutter run` in `app/`.
 
