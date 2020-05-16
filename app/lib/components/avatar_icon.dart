@@ -69,6 +69,34 @@ class AvatarIconComponent extends StatelessWidget {
           Colors.black,
           context,
         );
+      case "house":
+        return _avatarIcon(
+          CommunityMaterialIcons.home,
+          Colors.red,
+          Colors.white,
+          context,
+        );
+      case "tool":
+        return _avatarIcon(
+          CommunityMaterialIcons.toolbox,
+          Colors.pink,
+          Colors.white,
+          context,
+        );
+      case "foodanddrinks":
+        return _avatarIcon(
+          CommunityMaterialIcons.food_fork_drink,
+          Colors.purple,
+          Colors.white,
+          context,
+        );
+      case "school":
+        return _avatarIcon(
+          CommunityMaterialIcons.school,
+          Colors.blue,
+          Colors.white,
+          context,
+        );
       case "sbanken":
         return _avatarImage("assets/sbanken.png");
       default:
@@ -82,7 +110,11 @@ class AvatarIconComponent extends StatelessWidget {
   }
 
   Widget _avatarIcon(
-      IconData data, Color background, Color icon, BuildContext context) {
+    IconData data,
+    Color background,
+    Color icon,
+    BuildContext context,
+  ) {
     return CircleAvatar(
       backgroundColor: background,
       radius: size,
@@ -112,6 +144,10 @@ class AvatarIconComponent extends StatelessWidget {
       "hide",
       "income",
       "sbanken",
+      "house",
+      "tool",
+      "foodanddrinks",
+      "school",
     ]
         .map((name) => AvatarIconComponent(
               name: name,
