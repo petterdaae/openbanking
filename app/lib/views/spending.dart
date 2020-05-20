@@ -40,8 +40,8 @@ class _SpendingState extends State<Spending> {
           .collection('users')
           .document(uid)
           .collection('transactions')
-          .where('accountingDate', isGreaterThanOrEqualTo: firstInThisMonth)
-          .where('accountingDate', isLessThan: firstInNextMonth)
+          .where('accountingDate', isGreaterThanOrEqualTo: firstInThisMonth.millisecondsSinceEpoch)
+          .where('accountingDate', isLessThan: firstInNextMonth.millisecondsSinceEpoch)
           .snapshots(),
       builder: (
         BuildContext context,
