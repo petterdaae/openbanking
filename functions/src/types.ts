@@ -1,5 +1,3 @@
-import admin from "firebase-admin";
-
 export interface Account {
     accountId: string;
     accountNumber: string;
@@ -10,8 +8,8 @@ export interface Account {
 }
 
 export interface Transaction {
-    accountingDate: admin.firestore.Timestamp | null;
-    interestDate: admin.firestore.Timestamp | null;
+    accountingDate: number | null;
+    interestDate: number | null;
     amount: number;
     text: string;
     accountId: string;

@@ -29,8 +29,7 @@ class Transactions {
         const equal = transactions.filter(_transaction =>
             transaction.accountId === _transaction.accountId &&
             transaction.accountingDate === _transaction.accountingDate &&
-            transaction.amount === _transaction.amount &&
-            transaction.text === _transaction.text
+            transaction.amount === _transaction.amount
         );
         return equal.length;
     }
