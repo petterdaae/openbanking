@@ -20,21 +20,20 @@ class Transactions {
             .collection('transactions')
             .where('accountingDate', '==', transaction.accountingDate)
             .where('amount', '==', transaction.amount)
-            .where('accountId', '==', transaction.accountId)
             .get();
         return snapshot.size;
     }
 
     private equalTransactionsInList(transaction: Transaction, transactions: Transaction[]): number {
         const equal = transactions.filter(_transaction =>
-            transaction.accountId === _transaction.accountId &&
-            transaction.accountingDate === _transaction.accountingDate &&
-            transaction.amount === _transaction.amount
+            transaction.accountingDate == _transaction.accountingDate &&
+            transaction.amount == _transaction.amount
         );
         return equal.length;
     }
 
     async updateTransactions(transactions: Transaction[]) {
+        // NOTE: This is not possible to do concurrently
         for (const transaction of transactions) {
             await this.updateTransaction(transaction, transactions);
         }

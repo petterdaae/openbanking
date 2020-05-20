@@ -23,10 +23,10 @@ class Transaction {
 
   static Transaction parse(DocumentSnapshot snapshot) => Transaction(
         accountDocumentId: snapshot['accountId'],
-        accountIdFromBank: snapshot['accountIdFromBank'],
-        accountingDate: snapshot['accountingDate'],
+        accountIdFromBank:  snapshot['accountIdFromBank'],
+        accountingDate: Timestamp.fromMillisecondsSinceEpoch(snapshot['accountingDate']),
         amount: double.parse(snapshot['amount'].toString()),
-        interestDate: snapshot['interestDate'],
+        interestDate: Timestamp.fromMillisecondsSinceEpoch(snapshot['interestDate']),
         text: snapshot['text'],
         id: snapshot.documentID,
         categoryId: snapshot['categoryId'],
