@@ -1,5 +1,6 @@
 # Open Banking
-![](https://img.shields.io/badge/built%20with-firebase-orange.svg) ![](https://img.shields.io/badge/built%20with-flutter-blue.svg) ![](https://img.shields.io/badge/PRs-welcome-green.svg)
+
+![flutter analyze](https://github.com/petterdaae/openbanking/workflows/flutter%20analyze/badge.svg?branch=master)
 
 ## 🛠️ Development setup
 * Install [flutter](https://flutter.dev/docs/get-started/install).
