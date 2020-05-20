@@ -1,7 +1,7 @@
 # Open Banking
 ![](https://img.shields.io/badge/built%20with-firebase-orange.svg) ![](https://img.shields.io/badge/built%20with-flutter-blue.svg) ![](https://img.shields.io/badge/PRs-welcome-green.svg)
 
-## Development setup
+## 🛠️ Development setup
 * Install [flutter](https://flutter.dev/docs/get-started/install).
 * Install the [firebase cli](https://firebase.google.com/docs/cli).
 * Set up your own firebase project. You can do this in the [firebase console](https://console.firebase.com).
