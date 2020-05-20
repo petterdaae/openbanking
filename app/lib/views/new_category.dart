@@ -7,7 +7,6 @@ import 'package:provider/provider.dart';
 
 import '../providers/auth.dart';
 import '../providers/dependencies.dart';
-import '../providers/dependencies.dart';
 
 class NewCategory extends StatefulWidget {
   @override
