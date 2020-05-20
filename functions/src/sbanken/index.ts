@@ -91,9 +91,9 @@ export default class SbankenClient {
         return transactions;
     }
 
-    getTimestamp(date: string): admin.firestore.Timestamp | null {
+    getTimestamp(date: string): number | null {
         if (!date) return null;
         const dateObj = new Date(date);
-        return admin.firestore.Timestamp.fromDate(dateObj);
+        return admin.firestore.Timestamp.fromDate(dateObj).toMillis();
     }
 }
