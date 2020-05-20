@@ -32,7 +32,12 @@ class Main extends StatelessWidget {
       ],
       child: MaterialApp(
         home: App(),
-        theme: ThemeData.light().copyWith(),
+        theme: ThemeData.light().copyWith(
+          primaryColor: Color.fromRGBO(34, 40, 49, 1),
+          colorScheme: ColorScheme.light().copyWith(
+            secondary: Color.fromRGBO(242, 163, 101, 1),
+          )
+        ),
       ),
     );
   }

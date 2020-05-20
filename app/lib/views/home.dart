@@ -123,7 +123,7 @@ class SideNav extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
           ListTile(
