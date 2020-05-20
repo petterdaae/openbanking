@@ -12,8 +12,8 @@ class RoundIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Ink(
-      decoration: const ShapeDecoration(
-        color: Colors.lightBlue,
+      decoration: ShapeDecoration(
+        color: Theme.of(context).colorScheme.secondary,
         shape: CircleBorder(),
       ),
       child: IconButton(
