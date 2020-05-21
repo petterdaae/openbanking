@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tuple/tuple.dart';
 
+// ignore: must_be_immutable
 class TransactionListComponent extends StatelessWidget {
   TransactionListComponent({
     @required transactions,
@@ -58,7 +59,7 @@ class TransactionListComponent extends StatelessWidget {
       Transaction transaction = transactions[i];
       Category category = getCategory(transaction, categories);
 
-      if (hideHiddenTransactions && category.hidden) {
+      if (hideHiddenTransactions && category != null && category.hidden) {
         continue;
       }
 
@@ -74,6 +75,7 @@ class TransactionListComponent extends StatelessWidget {
     List<Category> categories,
   ) {
     for (Category category in categories) {
+      if (category == null) continue;
       if (transaction.categoryId == category.id) {
         return category;
       }
@@ -84,7 +86,6 @@ class TransactionListComponent extends StatelessWidget {
   Widget transactionListItem(int index) {
     final Transaction transaction = transactions[index];
     final Category category = getCategory(transaction, categories);
-    if (hideHiddenTransactions && category.static) return null;
     return TransactionListItemComponent(
       transaction: transaction,
       category: category,

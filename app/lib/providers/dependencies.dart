@@ -7,8 +7,6 @@ class Dependencies {
   const Dependencies({
     this.auth,
     this.firestore,
-    this.email,
-    this.password,
     this.cloudFunctions,
     this.utilities,
   });
@@ -16,7 +14,5 @@ class Dependencies {
   final FirebaseAuth auth;
   final Firestore firestore;
   final CloudFunctions cloudFunctions;
-  final String email;
-  final String password;
   final Utilities utilities;
 }
