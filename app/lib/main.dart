@@ -36,7 +36,8 @@ class Main extends StatelessWidget {
           primaryColor: Color.fromRGBO(34, 40, 49, 1),
           colorScheme: ColorScheme.light().copyWith(
             secondary: Color.fromRGBO(242, 163, 101, 1),
-          )
+            onSecondary: Colors.white,
+          ),
         ),
       ),
     );
