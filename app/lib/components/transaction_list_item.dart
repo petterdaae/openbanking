@@ -1,5 +1,6 @@
 import 'package:app/components/avatar_icon.dart';
 import 'package:app/components/money_text.dart';
+import 'package:app/helpers/prettier_description.dart';
 import 'package:app/models/category.dart';
 import 'package:app/models/transaction.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class TransactionListItemComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: AvatarIconComponent(category: category),
-      title: Text(transaction.text),
+      title: Text(prettierDescription(transaction.text)),
       subtitle: Text(
         DateFormat("dd. MMM yyyy").format(transaction.accountingDate.toDate()),
       ),

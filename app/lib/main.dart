@@ -1,6 +1,7 @@
 import 'package:app/providers/auth.dart';
 import 'package:app/providers/dependencies.dart';
 import 'package:app/providers/utilities.dart';
+import 'package:app/views/login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,8 +22,6 @@ class Main extends StatelessWidget {
             auth: FirebaseAuth.instance,
             firestore: Firestore.instance,
             cloudFunctions: CloudFunctions.instance,
-            email: 'petter.daae@gmail.com',
-            password: 'Zl88d^Zy54ph96FE1Zy!n',
             utilities: Utilities(),
           ),
         ),
@@ -48,19 +47,15 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Auth auth = Provider.of<Auth>(context);
-    return !auth.authenticated
-        ? Scaffold(
-            body: Center(
-              child: FlatButton(
-                onPressed: () {
-                  auth.login(context);
-                },
-                child: Text(
-                  'Login',
-                ),
-              ),
-            ),
-          )
-        : Home();
+    auth.listen(context);
+    switch (auth.authStatus) {
+      case AuthStatus.NotAuthenticated:
+        return Login();
+      case AuthStatus.Authenticating:
+        return Authenticating();
+      case AuthStatus.Authenticated:
+        return Home();
+    }
+    return null;
   }
 }
