@@ -28,7 +28,7 @@ class _AllTransactionsState extends State<AllTransactions> {
   @override
   void initState() {
     super.initState();
-    limit = 10;
+    limit = 30;
     scrollController = ScrollController();
     scrollController.addListener(scrollListener);
   }

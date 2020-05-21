@@ -18,7 +18,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   Page page = Page.Home;
-  bool hideHiddenTransactions = false;
+  bool hideHiddenTransactions = true;
 
   final List<Widget> _title = [
     Text('Accounts'),
