@@ -1,6 +1,7 @@
 import 'package:app/views/all_accounts.dart';
 import 'package:app/views/all_transactions.dart';
 import 'package:app/views/dev_tools.dart';
+import 'package:app/views/drawer_header.dart';
 import 'package:app/views/settings.dart';
 import 'package:app/views/spending.dart';
 import 'package:community_material_icon/community_material_icon.dart';
@@ -165,15 +166,7 @@ class SideNav extends StatelessWidget {
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            child: Text(
-              'Open Banking',
-              style: TextStyle(color: Colors.white),
-            ),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-          ),
+          MyDrawerHeader(),
           ListTile(
               title: Text('Home'), onTap: () => navigate(context, Page.Home)),
           ListTile(
