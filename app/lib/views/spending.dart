@@ -40,8 +40,10 @@ class _SpendingState extends State<Spending> {
           .collection('users')
           .document(uid)
           .collection('transactions')
-          .where('accountingDate', isGreaterThanOrEqualTo: firstInThisMonth.millisecondsSinceEpoch)
-          .where('accountingDate', isLessThan: firstInNextMonth.millisecondsSinceEpoch)
+          .where('accountingDate',
+              isGreaterThanOrEqualTo: firstInThisMonth.millisecondsSinceEpoch)
+          .where('accountingDate',
+              isLessThan: firstInNextMonth.millisecondsSinceEpoch)
           .snapshots(),
       builder: (
         BuildContext context,
@@ -85,6 +87,8 @@ class _SpendingState extends State<Spending> {
       final double sum = matching.fold(0, (prev, elem) => prev + elem.amount);
       result.add(Tuple2(category, sum));
     }
+
+    result.sort((a, b) => a.item2 > b.item2 ? 1 : -1);
 
     return result;
   }
