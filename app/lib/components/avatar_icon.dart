@@ -20,6 +20,13 @@ class AvatarIconComponent extends StatelessWidget {
     switch (_name) {
       case "netflix":
         return _avatarImage("assets/netflix.png");
+      case "profile":
+        return _avatarIcon(
+          CommunityMaterialIcons.face,
+          Colors.grey,
+          Colors.white,
+          context,
+        );
       case "food":
         return _avatarIcon(
           CommunityMaterialIcons.food_apple,

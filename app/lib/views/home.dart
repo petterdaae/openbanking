@@ -1,6 +1,7 @@
 import 'package:app/views/all_accounts.dart';
 import 'package:app/views/all_transactions.dart';
 import 'package:app/views/dev_tools.dart';
+import 'package:app/views/drawer_header.dart';
 import 'package:app/views/settings.dart';
 import 'package:app/views/spending.dart';
 import 'package:community_material_icon/community_material_icon.dart';
@@ -18,12 +19,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   Page page = Page.Home;
+  bool hideHiddenTransactions = true;
 
-  final List<Widget> _children = [
-    AllAccounts(),
-    AllTransactions(),
-    Spending(),
-  ];
   final List<Widget> _title = [
     Text('Accounts'),
     Text('Transactions'),
@@ -38,6 +35,7 @@ class _HomeState extends State<Home> {
       ),
       drawer: SideNav(navigator: this.navigate),
       body: getBody(),
+      floatingActionButton: floatingActionButton(),
       bottomNavigationBar: page == Page.Home
           ? BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
@@ -71,7 +69,7 @@ class _HomeState extends State<Home> {
   Widget getBody() {
     switch (page) {
       case Page.Home:
-        return _children[_currentIndex];
+        return getHomeBody();
       case Page.Categories:
         return Categories();
       case Page.Settings:
@@ -80,6 +78,21 @@ class _HomeState extends State<Home> {
         return DevTools();
       default:
         return Center(child: Text("Navigation Error"));
+    }
+  }
+
+  Widget getHomeBody() {
+    switch (_currentIndex) {
+      case 0:
+        return AllAccounts();
+      case 1:
+        return AllTransactions(
+          hideHiddenTransactions: hideHiddenTransactions,
+        );
+      case 2:
+        return Spending();
+      default:
+        return null;
     }
   }
 
@@ -96,6 +109,42 @@ class _HomeState extends State<Home> {
       default:
         return Text("Navigation Error");
     }
+  }
+
+  Widget floatingActionButton() {
+    if (page == Page.Home) {
+      if (_currentIndex == 1) {
+        return FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  return Container(
+                    child: Wrap(
+                      children: <Widget>[
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              hideHiddenTransactions = !hideHiddenTransactions;
+                            });
+                            Navigator.of(context).pop();
+                          },
+                          child: ListTile(
+                            title: hideHiddenTransactions
+                                ? Text("Show hidden transactions")
+                                : Text("Hide hidden transactions"),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                });
+          },
+          child: Icon(CommunityMaterialIcons.filter_variant),
+        );
+      }
+    }
+    return null;
   }
 
   void navigate(Page newPage) {
@@ -117,15 +166,7 @@ class SideNav extends StatelessWidget {
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            child: Text(
-              'Open Banking',
-              style: TextStyle(color: Colors.white),
-            ),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-          ),
+          MyDrawerHeader(),
           ListTile(
               title: Text('Home'), onTap: () => navigate(context, Page.Home)),
           ListTile(
