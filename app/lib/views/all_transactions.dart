@@ -11,6 +11,12 @@ import '../models/transaction.dart' as T;
 import '../providers/utilities.dart';
 
 class AllTransactions extends StatefulWidget {
+  const AllTransactions({
+    this.hideHiddenTransactions,
+  });
+
+  final bool hideHiddenTransactions;
+
   @override
   _AllTransactionsState createState() => _AllTransactionsState();
 }
@@ -22,15 +28,15 @@ class _AllTransactionsState extends State<AllTransactions> {
   @override
   void initState() {
     super.initState();
-    limit = 10;
+    limit = 30;
     scrollController = ScrollController();
     scrollController.addListener(scrollListener);
   }
 
   @override
   Widget build(BuildContext context) {
-    Firestore firestore = Provider.of<Dependencies>(context).firestore;
-    String uid = Provider.of<Auth>(context).uid;
+    final Firestore firestore = Provider.of<Dependencies>(context).firestore;
+    final String uid = Provider.of<Auth>(context).uid;
     return StreamBuilder2<QuerySnapshot, QuerySnapshot>(
       stream1: firestore
           .collection('users')
@@ -65,6 +71,7 @@ class _AllTransactionsState extends State<AllTransactions> {
           transactions: transactions,
           categories: categories,
           scrollController: scrollController,
+          hideHiddenTransactions: widget.hideHiddenTransactions,
         );
       },
     );
