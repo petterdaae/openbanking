@@ -7,6 +7,7 @@ import 'package:tuple/tuple.dart';
 import '../providers/dependencies.dart';
 import '../providers/utilities.dart';
 import 'avatar_icon.dart';
+import 'money_text.dart';
 
 class SpendingList extends StatelessWidget {
   const SpendingList({
@@ -24,7 +25,7 @@ class SpendingList extends StatelessWidget {
       itemBuilder: (context, index) => ListTile(
         leading: AvatarIconComponent(category: spending[index].item1),
         title: Text(spending[index].item1.name),
-        trailing: Text(utilities.formatMoney(spending[index].item2)),
+        trailing: MoneyText(spending[index].item2),
       ),
     );
   }
