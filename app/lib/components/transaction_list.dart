@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tuple/tuple.dart';
 
+// ignore: must_be_immutable
 class TransactionListComponent extends StatelessWidget {
   TransactionListComponent({
     @required transactions,
