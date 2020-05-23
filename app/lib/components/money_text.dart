@@ -15,7 +15,7 @@ class MoneyText extends StatelessWidget {
       utilities.formatMoney(amount),
       style: TextStyle(
         fontWeight: FontWeight.bold,
-        color: amount > 0 ? Colors.green : Colors.red,
+        color: amount >= 0 ? Colors.green : Colors.red,
       ),
     );
   }
