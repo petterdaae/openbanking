@@ -20,6 +20,7 @@ class Transactions {
             .collection('transactions')
             .where('accountingDate', '==', transaction.accountingDate)
             .where('amount', '==', transaction.amount)
+            .where('text', '==', transaction.text)
             .get();
         return snapshot.size;
     }
@@ -27,7 +28,8 @@ class Transactions {
     private equalTransactionsInList(transaction: Transaction, transactions: Transaction[]): number {
         const equal = transactions.filter(_transaction =>
             transaction.accountingDate == _transaction.accountingDate &&
-            transaction.amount == _transaction.amount
+            transaction.amount == _transaction.amount &&
+            transaction.text == _transaction.text
         );
         return equal.length;
     }
