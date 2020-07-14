@@ -39,7 +39,3 @@
 * [ ] Create multilevel categories
 * [ ] Transfer between accounts
 * [ ] Show status on future economy
-
-## ❌  Problems
-* [ ] At this point in time it is clumsy to determine the uniqueness of transactions from Sbanken. Therefore, the uniqueness is currently determined by the transaction date and amount. If there are several transactions with the same date and amount they will be added several times to the databse, but they will all look the same. So, if there exists two transactions with the same date and amount, but different descriptions, only one of them will be added to the database twice.
-
