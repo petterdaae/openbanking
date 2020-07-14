@@ -77,6 +77,7 @@ export default class SbankenClient {
 
         const transactions: Transaction[] = [];
         for (const item of json.items) {
+            if (item.isReservation) continue;
             const transaction: Transaction = {
                 accountingDate: this.getTimestamp(item.accountingDate),
                 interestDate: this.getTimestamp(item.interestDate),
