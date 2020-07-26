@@ -1,3 +1,4 @@
+// TODO : This should be in firestore
 Map<String, String> _prettier = {
   "STRAKSOVERFØRING": "Vipps",
   "PEPPES PIZZA": "Peppes Pizza",
