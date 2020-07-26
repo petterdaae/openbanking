@@ -82,6 +82,7 @@ class _SpendingState extends State<Spending> {
     List<Tuple2<Category, double>> result = List();
 
     for (Category category in categories) {
+      if (category.hidden) continue;
       final List<T.Transaction> matching =
           transactions.where((t) => t.categoryId == category.id).toList();
       final double sum = matching.fold(0, (prev, elem) => prev + elem.amount);
