@@ -24,11 +24,20 @@ Map<String, String> _prettier = {
   "EXTRA": "Coop Extra",
   "ARDUINO": "Arduino",
   "MENY": "Meny",
+  "NORLI": "Norli",
+  "AMUNDSEN": "Amundsen Spesial",
+  "KJELL&": "Kjell & Company",
+  "REMA": "Rema 1000",
+  "YOUTUBE": "YouTube",
+  "AKADEM.KVARTER": "Det Akademiske Kvarter",
+  "ELKJØP": "Elkjøp",
+  "COCA-COLA ENTERPRISES": "Brusautomat",
+  "LØNN": "Lønn",
 };
 
 String prettierDescription(String description) {
   for (String key in _prettier.keys) {
-    if (description.contains(key)) {
+    if (description.toLowerCase().contains(key.toLowerCase())) {
       return _prettier[key];
     }
   }

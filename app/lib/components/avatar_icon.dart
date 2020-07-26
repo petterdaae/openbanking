@@ -97,6 +97,13 @@ class AvatarIconComponent extends StatelessWidget {
           Colors.white,
           context,
         );
+      case "gift":
+        return _avatarIcon(
+          CommunityMaterialIcons.gift,
+          Colors.red,
+          Colors.white,
+          context,
+        );
       case "school":
         return _avatarIcon(
           CommunityMaterialIcons.school,
@@ -155,6 +162,7 @@ class AvatarIconComponent extends StatelessWidget {
       "tool",
       "foodanddrinks",
       "school",
+      "gift",
     ]
         .map((name) => AvatarIconComponent(
               name: name,
