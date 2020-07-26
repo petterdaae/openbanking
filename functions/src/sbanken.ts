@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import btoa from 'btoa';
-import { Account, Transaction } from '../types';
+import { Account, Transaction } from './types';
 import admin from "firebase-admin";
 
 export default class SbankenClient {

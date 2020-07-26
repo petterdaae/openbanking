@@ -1,6 +1,6 @@
 import admin from "firebase-admin";
-import Dependencies from "../dependencies";
-import { Account } from '../types';
+import Dependencies from "./dependencies";
+import { Account } from './types';
 
 type Firestore = admin.firestore.Firestore;
 
@@ -46,7 +46,7 @@ export class Accounts {
             .get();
         const doc = snapshot.docs[0];
         return doc.id;
-    } 
+    }
 
     async updateAccount(account: Account): Promise<void> {
         const exists = await this.accountExists(account);

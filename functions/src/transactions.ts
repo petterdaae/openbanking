@@ -1,6 +1,6 @@
-import Dependencies from "../dependencies";
-import { Transaction } from '../types';
-import createAccountsClient, { Accounts } from '../accounts';
+import Dependencies from "./dependencies";
+import { Transaction } from './types';
+import createAccountsClient, { Accounts } from './accounts';
 
 class Transactions {
     deps: Dependencies;
