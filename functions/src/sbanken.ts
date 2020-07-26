@@ -84,7 +84,8 @@ export default class SbankenClient {
                 amount: item.amount,
                 text: item.text,
                 accountId: 'UKNOWN',
-                accountIdFromBank: sbankenAccountId
+                accountIdFromBank: sbankenAccountId,
+                originalJson: JSON.stringify(item)
             };
             transactions.push(transaction);
         }

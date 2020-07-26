@@ -14,4 +14,5 @@ export interface Transaction {
     text: string;
     accountId: string;
     accountIdFromBank: string;
+    originalJson: string;
 }
