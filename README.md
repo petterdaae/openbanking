@@ -16,9 +16,9 @@
 
 ### Creating new users
 * Create the user in authentication (submit an email and a password).
-* Create a docuement for that user in the *users* collection in firestore.
+* Create a document for that user in the *users* collection in firestore.
 * The id of the document should be the same as the user id.
-* The document should look something like the json below:
+* The document should look something like the example below:
 ```json
 {
     "name": "Ola Nordman",
@@ -38,4 +38,3 @@
 * [ ] Split transactions
 * [ ] Create multilevel categories
 * [ ] Transfer between accounts
-* [ ] Show status on future economy
