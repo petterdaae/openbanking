@@ -22,11 +22,13 @@ class Categories extends StatelessWidget {
         ),
         child: Icon(Icons.add),
       ),
+      backgroundColor: Colors.white,
       body: Column(
         children: <Widget>[
-          Expanded(child: CategoryList(
-            onCategoryTapped: (id) {
-              showModalBottomSheet(
+          Expanded(
+            child: CategoryList(
+              onCategoryTapped: (id) {
+                showModalBottomSheet(
                   context: context,
                   builder: (BuildContext context) {
                     return Container(
@@ -49,9 +51,11 @@ class Categories extends StatelessWidget {
                         ],
                       ),
                     );
-                  });
-            },
-          )),
+                  },
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

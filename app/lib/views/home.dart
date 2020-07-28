@@ -22,9 +22,9 @@ class _HomeState extends State<Home> {
   bool hideHiddenTransactions = true;
 
   final List<Widget> _title = [
-    Text('Accounts'),
-    Text('Transactions'),
-    Text('Spending'),
+    Text('🏦 Accounts'),
+    Text('💸 Transactions'),
+    Text('💳 Spending'),
   ];
 
   @override
@@ -32,14 +32,25 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: getTitle(),
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        centerTitle: true,
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Colors.black,
+              displayColor: Colors.black,
+            ),
       ),
       drawer: SideNav(navigator: this.navigate),
       body: getBody(),
+      backgroundColor: Colors.white,
       floatingActionButton: floatingActionButton(),
       bottomNavigationBar: page == Page.Home
           ? BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               currentIndex: _currentIndex,
+              elevation: 100.0,
+              backgroundColor: Colors.white,
               onTap: onTabTapped,
               items: [
                 BottomNavigationBarItem(
@@ -101,11 +112,11 @@ class _HomeState extends State<Home> {
       case Page.Home:
         return _title[_currentIndex];
       case Page.Categories:
-        return Text("Categories");
+        return Text("📂 Categories");
       case Page.Settings:
-        return Text("Settings");
+        return Text("⚙️ Settings");
       case Page.Dev:
-        return Text("Dev");
+        return Text("⚒️ Dev");
       default:
         return Text("Navigation Error");
     }

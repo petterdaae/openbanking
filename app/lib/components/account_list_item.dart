@@ -10,13 +10,15 @@ class AccountListItemComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: AvatarIconComponent(
-        name: account.bank,
+    return Card(
+      child: ListTile(
+        leading: AvatarIconComponent(
+          name: account.bank,
+        ),
+        title: Text(account.name),
+        subtitle: Text(account.bank),
+        trailing: MoneyText(account.balance),
       ),
-      title: Text(account.name),
-      subtitle: Text(account.bank),
-      trailing: MoneyText(account.balance),
     );
   }
 }

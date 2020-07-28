@@ -18,13 +18,16 @@ class TransactionListItemComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: AvatarIconComponent(category: category),
-      title: Text(prettierDescription(transaction.text)),
-      subtitle: Text(
-        DateFormat("dd. MMM yyyy").format(transaction.accountingDate.toDate()),
+    return Card(
+      child: ListTile(
+        leading: AvatarIconComponent(category: category),
+        title: Text(prettierDescription(transaction.text)),
+        subtitle: Text(
+          DateFormat("dd. MMM yyyy")
+              .format(transaction.accountingDate.toDate()),
+        ),
+        trailing: MoneyText(transaction.amount),
       ),
-      trailing: MoneyText(transaction.amount),
     );
   }
 }

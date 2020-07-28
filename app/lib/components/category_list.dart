@@ -13,10 +13,7 @@ class CategoryListComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (_, index) => Divider(
-        color: Colors.grey,
-      ),
+    return ListView.builder(
       itemCount: categories.length,
       itemBuilder: (context, index) => InkWell(
         onTap: this.onCategoryTapped == null

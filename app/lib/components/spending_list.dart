@@ -15,13 +15,14 @@ class SpendingList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      separatorBuilder: (_, index) => Divider(color: Colors.grey),
+    return ListView.builder(
       itemCount: spending.length,
-      itemBuilder: (context, index) => ListTile(
-        leading: AvatarIconComponent(category: spending[index].item1),
-        title: Text(spending[index].item1.name),
-        trailing: MoneyText(spending[index].item2),
+      itemBuilder: (context, index) => Card(
+        child: ListTile(
+          leading: AvatarIconComponent(category: spending[index].item1),
+          title: Text(spending[index].item1.name),
+          trailing: MoneyText(spending[index].item2),
+        ),
       ),
     );
   }

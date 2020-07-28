@@ -32,9 +32,10 @@ class Main extends StatelessWidget {
       child: MaterialApp(
         home: App(),
         theme: ThemeData.light().copyWith(
-          primaryColor: Color.fromRGBO(34, 40, 49, 1),
+          backgroundColor: Colors.white,
+          primaryColor: Color.fromRGBO(68, 85, 90, 1),
           colorScheme: ColorScheme.light().copyWith(
-            secondary: Color.fromRGBO(242, 163, 101, 1),
+            secondary: Color.fromRGBO(68, 85, 90, 1),
             onSecondary: Colors.white,
           ),
         ),

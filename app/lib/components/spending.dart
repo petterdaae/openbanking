@@ -30,7 +30,6 @@ class SpendingComponent extends StatelessWidget {
             onPrevPressed: this.onPrevPressed,
           ),
         ),
-        Divider(color: Colors.grey),
         Expanded(child: SpendingList(spending: this.spending)),
         // SpendingList(),
       ],

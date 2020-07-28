@@ -11,9 +11,11 @@ class CategoryListItemComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: AvatarIconComponent(category: category),
-      title: Text(category.name),
+    return Card(
+      child: ListTile(
+        leading: AvatarIconComponent(category: category),
+        title: Text(category.name),
+      ),
     );
   }
 }
