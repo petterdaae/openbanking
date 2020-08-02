@@ -2,6 +2,7 @@ import 'package:app/components/month_year_picker.dart';
 import 'package:app/components/spending_list.dart';
 import 'package:app/models/category.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:tuple/tuple.dart';
 
 class SpendingComponent extends StatelessWidget {
@@ -22,15 +23,25 @@ class SpendingComponent extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
-          child: MonthYearPicker(
-            dateTime: this.dateTime,
-            onNextPressed: this.onNextPressed,
-            onPrevPressed: this.onPrevPressed,
+        Flexible(
+          child: SvgPicture.asset("assets/investing.svg"),
+          flex: 3,
+        ),
+        Flexible(
+          flex: 1,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+            child: MonthYearPicker(
+              dateTime: this.dateTime,
+              onNextPressed: this.onNextPressed,
+              onPrevPressed: this.onPrevPressed,
+            ),
           ),
         ),
-        Expanded(child: SpendingList(spending: this.spending)),
+        Flexible(
+          child: SpendingList(spending: this.spending),
+          flex: 6,
+        ),
         // SpendingList(),
       ],
     );

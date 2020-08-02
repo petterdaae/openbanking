@@ -20,6 +20,7 @@ dependencies:
   tuple:
   jiffy:
   flutter_json_widget:
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:
@@ -31,4 +32,5 @@ flutter:
   assets:
     - assets/netflix.png
     - assets/sbanken.png
+    - assets/investing.svg
 
