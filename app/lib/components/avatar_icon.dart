@@ -111,6 +111,13 @@ class AvatarIconComponent extends StatelessWidget {
           Colors.white,
           context,
         );
+      case "error":
+        return _avatarIcon(
+          CommunityMaterialIcons.alert,
+          Colors.pinkAccent,
+          Colors.white,
+          context,
+        );
       case "sbanken":
         return _avatarImage("assets/sbanken.png");
       default:
@@ -163,6 +170,7 @@ class AvatarIconComponent extends StatelessWidget {
       "foodanddrinks",
       "school",
       "gift",
+      "error",
     ]
         .map((name) => AvatarIconComponent(
               name: name,
