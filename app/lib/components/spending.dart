@@ -11,12 +11,16 @@ class SpendingComponent extends StatelessWidget {
     @required this.dateTime,
     @required this.onNextPressed,
     @required this.onPrevPressed,
+    @required this.totalIncome,
+    @required this.totalExpenses,
   });
 
   final List<Tuple2<Category, double>> spending;
   final DateTime dateTime;
   final Function onNextPressed;
   final Function onPrevPressed;
+  final double totalIncome;
+  final double totalExpenses;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +31,10 @@ class SpendingComponent extends StatelessWidget {
           child: SvgPicture.asset("assets/investing.svg"),
           flex: 3,
         ),
+        //Flexible(
+        //  child: Text(this.totalExpenses.toString()),
+        //  flex: 1,
+        //),
         Flexible(
           flex: 1,
           child: Padding(
@@ -40,6 +48,7 @@ class SpendingComponent extends StatelessWidget {
         ),
         Flexible(
           child: SpendingList(spending: this.spending),
+          fit: FlexFit.loose,
           flex: 6,
         ),
         // SpendingList(),

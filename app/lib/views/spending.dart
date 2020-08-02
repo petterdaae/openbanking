@@ -70,6 +70,8 @@ class _SpendingState extends State<Spending> {
             this.setState(() =>
                 this._dateTime = Jiffy(this._dateTime).subtract(months: 1));
           },
+          totalIncome: totalIncome(transactions),
+          totalExpenses: totalExpenses(transactions),
         );
       },
     );
@@ -92,5 +94,25 @@ class _SpendingState extends State<Spending> {
     result.sort((a, b) => a.item2 > b.item2 ? 1 : -1);
 
     return result;
+  }
+
+  double totalIncome(List<T.Transaction> transactions) {
+    double total = 0;
+    for (T.Transaction transaction in transactions) {
+      if (transaction.amount > 0) {
+        total += transaction.amount;
+      }
+    }
+    return total;
+  }
+
+  double totalExpenses(List<T.Transaction> transactions) {
+    double total = 0;
+    for (T.Transaction transaction in transactions) {
+      if (transaction.amount < 0) {
+        total -= transaction.amount;
+      }
+    }
+    return total;
   }
 }
