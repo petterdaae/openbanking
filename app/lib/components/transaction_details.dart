@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:app/components/avatar_icon.dart';
 import 'package:app/models/category.dart';
 import 'package:app/models/transaction.dart';
 import 'package:app/providers/dependencies.dart';
 import 'package:community_material_icon/community_material_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_json_widget/flutter_json_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -23,40 +26,53 @@ class TransactionDetailsComponent extends StatelessWidget {
     var utilities = Provider.of<Dependencies>(context).utilities;
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Padding(padding: EdgeInsets.all(8)),
-          AvatarIconComponent(category: category, size: 50),
-          Padding(padding: EdgeInsets.all(8)),
-          transactionDescription(),
-          Divider(color: Colors.grey),
-          keyValue(
-            CommunityMaterialIcons.text,
-            "Description",
-            transaction.text,
-          ),
-          Divider(color: Colors.grey),
-          keyValue(
-            CommunityMaterialIcons.currency_usd,
-            "Amount",
-            utilities.formatMoney(transaction.amount),
-          ),
-          Divider(color: Colors.grey),
-          keyValue(
-            CommunityMaterialIcons.calendar,
-            "Accounting date",
-            DateFormat("dd. MMM").format(transaction.accountingDate.toDate()),
-          ),
-          Divider(color: Colors.grey),
-          keyValue(
-            CommunityMaterialIcons.calendar,
-            "Interest date",
-            DateFormat("dd. MMM").format(transaction.interestDate.toDate()),
-          ),
-          Divider(color: Colors.grey),
-          Padding(padding: EdgeInsets.all(8)),
-        ]..addAll(children == null ? List() : children),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Padding(padding: EdgeInsets.all(8)),
+            AvatarIconComponent(category: category, size: 50),
+            Padding(padding: EdgeInsets.all(8)),
+            transactionDescription(),
+            Divider(color: Colors.grey),
+            keyValue(
+              CommunityMaterialIcons.text,
+              "Description",
+              transaction.text,
+            ),
+            Divider(color: Colors.grey),
+            keyValue(
+              CommunityMaterialIcons.currency_usd,
+              "Amount",
+              utilities.formatMoney(transaction.amount),
+            ),
+            Divider(color: Colors.grey),
+            keyValue(
+              CommunityMaterialIcons.calendar,
+              "Accounting date",
+              DateFormat("dd. MMM").format(transaction.accountingDate.toDate()),
+            ),
+            Divider(color: Colors.grey),
+            keyValue(
+              CommunityMaterialIcons.calendar,
+              "Interest date",
+              DateFormat("dd. MMM").format(transaction.interestDate.toDate()),
+            ),
+            transaction.originalJson != null
+                ? Divider(color: Colors.grey)
+                : Container(),
+            transaction.originalJson != null
+                ? SafeArea(
+                    child: SingleChildScrollView(
+                      child: JsonViewerWidget(
+                          jsonDecode(transaction.originalJson)),
+                    ),
+                  )
+                : Container(),
+            Divider(color: Colors.grey),
+            Padding(padding: EdgeInsets.all(8)),
+          ]..addAll(children == null ? List() : children),
+        ),
       ),
     );
   }

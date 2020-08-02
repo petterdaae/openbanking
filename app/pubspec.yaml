@@ -19,6 +19,7 @@ dependencies:
   fl_chart:
   tuple:
   jiffy:
+  flutter_json_widget:
 
 dev_dependencies:
   flutter_test:
